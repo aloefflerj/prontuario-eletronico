@@ -1,0 +1,46 @@
+/*Buttons, tables...*/
+/*Sidebar, navbar, products...*/
+/*Specific pages*/
+/*Mobile and tablet applications*/
+/*All classes, elements and ids*/
+.default {
+  background-color: #597AA9;
+}
+
+.error {
+  background-color: red;
+}
+
+.warning {
+  background-color: yellow;
+}
+
+.success {
+  background-color: blue;
+}
+
+.buy {
+  background-color: green;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Oswald";
+  background-color: #e9ecef;
+}
+
+body {
+  font-family: "Oswald";
+  letter-spacing: 0.5px;
+  background-color: #e9ecef;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*# sourceMappingURL=style.css.map */

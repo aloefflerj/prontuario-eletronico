@@ -1,0 +1,42 @@
+{
+    "name":"aloefflerj/hidroconex.com",
+    "description": "Website hidroconex.com para da empresa Hidroconex ImportaçãO e Exportação LTDA",
+    "minimun-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+    {
+        "name": "Anderson Job Loeffler",
+        "email": "aloeffler.j@gmail.com",
+        "role": "Developer",
+        "homepage": "https://andersonjobloeffler.com"
+    }
+    ],
+    "config":{
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/",
+            "Core\\": "Core/",
+            "Source\\App\\Controllers\\": "source/App/Controllers",
+            "Source\\App\\Models\\": "source/App/Models",
+            "Source\\Facades\\": "source/Facades",
+            "Library\\": "lib/",
+            "Temporary\\": "tmp/"
+        },
+        
+        "files": [
+        "config/Config.php",
+        "config/Helpers.php"
+        ]
+    },
+    "require":{
+        "ext-json": "*",
+        "php": "^7.3",
+        "coffeecode/datalayer": "^1.0",
+        "coffeecode/router": "^1.0",
+        "league/plates": "v4.0.0-alpha"
+
+    }
+    
+}
