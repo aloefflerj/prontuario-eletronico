@@ -26,6 +26,14 @@ $router->get("/", "Web:teste", "web.teste");
 
 /**
  * WEB
+ * add
+ */
+$router->group("/");
+$router->get("add", "Web:add", "web.add");
+
+
+/**
+ * WEB
  * error
  */
 $router->group("ooops");

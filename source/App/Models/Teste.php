@@ -4,18 +4,15 @@ namespace Source\App\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
 
-class Produtos extends DataLayer
+class Teste extends DataLayer
 {
     public function __construct() {
-        parent::__construct("produtos", [], "idProduto", false);
+        parent::__construct("paciente", ["nome", "sobrenome"]);
     }
 
-    public function add(String $nomeProduto, String $categoria, String $tipo, String $info, String $imagem) : Produtos{
-        $this->nomeProduto  = $nomeProduto;
-        $this->categoria    = $categoria;
-        $this->tipo         = $tipo;
-        $this->info         = $info;
-        $this->imagem       = $imagem;
+    public function add(String $nome, String $sobrenome) : Teste{
+        $this->nome         = $nome;
+        $this->sobrenome    = $sobrenome;
 
         $this->save();
 
@@ -23,7 +20,7 @@ class Produtos extends DataLayer
 
     }
 
-    public function categories($category)
+    /*public function categories($category)
     {
 
         $result = $this->find("categoria = :cat", "cat={$category}")->fetch(true);
@@ -44,5 +41,5 @@ class Produtos extends DataLayer
     public function getOneOccurrence($data)
     {
         echo $data;
-    }
+    }*/
 }
