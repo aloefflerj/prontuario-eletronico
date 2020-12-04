@@ -37,7 +37,7 @@ if ($_SERVER["SERVER_NAME"] == "localhost"){
         "port" => "3306",
         "dbname" => "mvc_template",
         "username" => "ander393_ghoron",
-        "passwd" => "f%Mo*#&7WeBzuVHN",
+        "passwd" => "",
         "options" => [
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
