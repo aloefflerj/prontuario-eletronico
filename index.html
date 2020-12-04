@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Sistema de Prontuário Eletrônico</a>
+        <form class="form-inline">
+            <span class="nav-link">Sign Out</span>
+        </form>
+        </form>
+    </nav>
+
+    <!-- Corpo da pagina -->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Titulo -->
+            <main class="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4" role="main">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+                    <h1 class="h2">Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <button class="btn btn-sm btn-outline-secondary">Share</button>
+                            <button class="btn btn-sm btn-outline-secondary">Export</button>
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                            <span data-feather="calendar"></span>
+                            This week
+                        </button>
+                    </div>
+            </main>
+
+            <!-- Tabela de Pacientes -->
+            <main class="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4" role="main">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Sobrenome</th>
+                            <th scope="col">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Emanuel</td>
+                            <td>dos Santos Paz</td>
+                            <td>
+                                <button type="button" onclick="displayPaciente()"
+                                    class="btn btn-light">Visualizar</button>
+                                <button type="button" class="btn btn-light">Modificar</button>
+                                <button type="button" class="btn btn-light">Deletar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+
+        </div>
+    </div>
+
+    <!-- Jpopper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <script>
+
+        function displayPaciente() {
+            return location.href = "paciente.html";
+        }
+
+    </script>
+</body>
+
+</html>
