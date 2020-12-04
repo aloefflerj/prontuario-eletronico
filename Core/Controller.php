@@ -32,8 +32,6 @@ class Controller
 
     public function ajaxMessage(string $message, string $type): string
     {   
-        //return json_encode(["message" => "<div class\"message $type\">/$message</div>"]);
-        //Testando:
         return json_encode(flash($message, $type));
     }
 
