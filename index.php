@@ -25,11 +25,12 @@ $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
 
 /**
- * WEB
- * add
+ * APP
+ * pacientes (teste)
  */
-$router->group("/");
-$router->get("add", "Web:add", "web.add");
+$router->group("pacientes");
+$router->get("/", "Web:pacientes", "web.pacientes");
+$router->get("/add/{nome}/{sobrenome}", "Web:add", "web.add");
 
 
 /**

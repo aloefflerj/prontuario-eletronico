@@ -26,11 +26,20 @@ class Web extends Controller
     }
 
     /**
+     * Pacientes
+     */
+    public function pacientes(): void
+    {
+        $pacientes = $this->pacientes->find()->fetch(true);
+        echo $this->view->render("app/pacientes", ["pacientes" => $pacientes]);
+    }
+
+    /**
      * Add
      */
-    public function add(): void
+    public function add($data): void
     {
-        $this->pacientes->add("Anderson", "loeffler");
+        $this->pacientes->add($data["nome"], $data["sobrenome"]);
     }
 
     /**
