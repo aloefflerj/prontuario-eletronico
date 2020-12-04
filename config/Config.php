@@ -3,12 +3,12 @@
  * SITE CONFIG
  */
 define ("SITE", [
-    "name" => "Site Name",
-    "desc" => "Website Description",
-    "domain" => "websitename.com",
+    "name" => "Prontuário Eletrônico",
+    "desc" => "Prontuário Eletrônico para Desenvolvimento de Software Para Web",
+    "domain" => "prontuario.com",
     "locale" => "pt_BR",
     "language" => "pt-br",
-    "root" => "http://localhost/mvc-template"
+    "root" => "http://localhost/prontuario-eletronico"
 ]);
 
 /**
@@ -20,7 +20,7 @@ if ($_SERVER["SERVER_NAME"] == "localhost"){
         "driver" => "mysql",
         "host" => "localhost",
         "port" => "3306",
-        "dbname" => "mvc_template",
+        "dbname" => "teste",
         "username" => "root",
         "passwd" => "",
         "options" => [

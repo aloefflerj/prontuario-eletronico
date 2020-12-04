@@ -3,16 +3,16 @@
 namespace Source\App\Controllers;
 
 use Core\Controller;
-use Source\App\Models\Users;
+use Source\App\Models\Pacientes;
 
 class Web extends Controller
 {
-    private $users;
+    //private $pacientes;
 
     public function __construct($router) {
         parent::__construct($router);
-        /**@var Users */
-        $this->users = new Users();
+        /**@var Pacientes */
+        $this->pacientes = new Pacientes();
     }
 
     /**
@@ -20,9 +20,26 @@ class Web extends Controller
      */
     public function home(): void
     {
-        $users = $this->users->find()->fetch(true);
-        
-        echo $this->view->render("web/home", ["users" => $users]);
+        $pacientes = $this->pacientes->find()->fetch(true);
+        //$pacientes = $this->pacientes = new Pacientes();
+        echo $this->view->render("web/home", ["pacientes"=>$pacientes]);
+    }
+
+    /**
+     * Pacientes
+     */
+    public function pacientes(): void
+    {
+        $pacientes = $this->pacientes->find()->fetch(true);
+        echo $this->view->render("app/pacientes", ["pacientes" => $pacientes]);
+    }
+
+    /**
+     * Add
+     */
+    public function add($data): void
+    {
+        $this->pacientes->add($data["nome"], $data["sobrenome"]);
     }
 
     /**

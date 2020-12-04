@@ -25,6 +25,15 @@ $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
 
 /**
+ * APP
+ * pacientes (teste)
+ */
+$router->group("pacientes");
+$router->get("/", "Web:pacientes", "web.pacientes");
+$router->get("/add/{nome}/{sobrenome}", "Web:add", "web.add");
+
+
+/**
  * WEB
  * error
  */
