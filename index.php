@@ -15,23 +15,18 @@ $router->namespace("Source\App\Controllers");
  * home
  */
 $router->group(null);
-$router->get("/", "Web:home", "web.home");
+$router->get("/", "Web:index", "web.index");
 
 /**
  * WEB
  * teste
  */
+$router->group("pacientes");
+$router->get("/{id}", "Web:pacientes", "web.pacientes");
+
+
 $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
-
-/**
- * APP
- * pacientes (teste)
- */
-$router->group("pacientes");
-$router->get("/", "Web:pacientes", "web.pacientes");
-$router->get("/add/{nome}/{sobrenome}", "Web:add", "web.add");
-
 
 /**
  * WEB

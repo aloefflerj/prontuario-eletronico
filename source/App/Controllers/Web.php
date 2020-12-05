@@ -28,19 +28,30 @@ class Web extends Controller
     /**
      * Pacientes
      */
-    public function pacientes(): void
+    public function index(): void
     {
+        // Pega todos os Pacientes
         $pacientes = $this->pacientes->find()->fetch(true);
-        echo $this->view->render("app/pacientes", ["pacientes" => $pacientes]);
+        echo $this->view->render("app/index", ["pacientes" => $pacientes]);
+    }
+
+    public function pacientes($data): void
+    {
+        // Pega todos os Pacientes
+        $pacientes = $this->pacientes->find()->fetch(true);
+        var_dump($pacientes->findById($data["id"]));
+        // echo $this->view->render("app/index", ["pacientes" => $pacientes]);
     }
 
     /**
      * Add
      */
-    public function add($data): void
-    {
-        $this->pacientes->add($data["nome"], $data["sobrenome"]);
-    }
+    // public function add($data): void
+    // {
+    //     echo $data["nome"];
+    //     // Adiciona no banco
+    //     // $this->pacientes->add($data["nome"], $data["sobrenome"]);
+    // }
 
     /**
      * Teste
