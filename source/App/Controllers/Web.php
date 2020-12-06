@@ -4,6 +4,8 @@ namespace Source\App\Controllers;
 
 use Core\Controller;
 use Source\App\Models\Pacientes;
+use Source\App\Models\Pessoas;
+use Source\App\Models\Profissionais;
 
 class Web extends Controller
 {
@@ -13,6 +15,10 @@ class Web extends Controller
         parent::__construct($router);
         /**@var Pacientes */
         $this->pacientes = new Pacientes();
+        /**@var Profissionais */
+        $this->profissionais = new Profissionais();
+        /**@var Pessoas */
+        $this->pessoas = new Pessoas("a",["a"]);
     }
 
     /**
@@ -21,7 +27,6 @@ class Web extends Controller
     public function home(): void
     {
         $pacientes = $this->pacientes->find()->fetch(true);
-        //$pacientes = $this->pacientes = new Pacientes();
         echo $this->view->render("web/home", ["pacientes"=>$pacientes]);
     }
 
@@ -38,9 +43,9 @@ class Web extends Controller
     public function pacientes($data): void
     {
         // Pega todos os Pacientes
-        $pacientes = $this->pacientes->find()->fetch(true);
-        var_dump($pacientes->findById($data["id"]));
-        // echo $this->view->render("app/index", ["pacientes" => $pacientes]);
+        $paciente = $this->pacientes->findById($data["id"]);
+        //echo($paciente->nome);
+        echo $this->view->render("app/pacientes", ["paciente" => $paciente]);
     }
 
     /**
@@ -58,7 +63,8 @@ class Web extends Controller
      */
     public function teste(): void
     {
-        echo $this->view->render("web/teste");
+        //echo $this->view->render("web/teste");
+        echo "<pre>" , var_dump($this->profissionais->find()->fetch(true)), "</pre>";
     }
 
     /**

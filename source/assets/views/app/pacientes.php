@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <style>
-    </style>
-</head>
-
-<body>
+<?php $v->layout("_bootstrap"); ?>
     <!-- NavBar -->
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Sistema de Prontuário Eletrônico</a>
-        <form class="form-inline">
-            <span class="nav-link">Sign Out</span>
-        </form>
-        </form>
-    </nav>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 mt-4">
@@ -46,10 +26,12 @@
                     </div>
             </main>
             <div class="col-md-12 px-4">
-                <p>ID: 1</p>
-                <p>Nome: Emanuel dos Santos Paz</p>
-                <p>CPF: 000.000.000.000</p>
-                <p>Endereço: Beira Rio - Porto Alegre</p>
+                <p>ID:              <?= $paciente->id ?> </p>
+                <p>Nome:            <?= $paciente->nome ?></p>
+                <p>CPF:             <?= $paciente->cpf ?></p>
+                <p>Endereço:        <?= $paciente->endereco ?></p>
+                <p>Telefone:        <?= $paciente->telefone ?></p>
+                <p>Ano Nascimento:  <?= $paciente->anoNasc ?></p>
             </div>
             <ul class="nav nav-tabs pt-2">
                 <li class="nav-item">
@@ -67,15 +49,3 @@
             </ul>
         </div>
     </div>
-    <!-- Jpopper -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
-    <script>
-    </script>
-</body>
-
-</html>

@@ -25,7 +25,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Sobrenome</th>
+                        <th scope="col">Cpf</th>
                         <th scope="col">Opções</th>
                     </tr>
                 </thead>
@@ -39,7 +39,9 @@
                                 <td> <?= $paciente->nome; ?> </td>
                                 <td> <?= $paciente->cpf; ?> </td>
                                 <td>
-                                    <button type="button" onclick="displayPaciente()" class="btn btn-light">Visualizar</button>
+                                    <button type="button" 
+                                            onclick="location.href='<?= $router->route('web.pacientes', ['id' => $paciente->id]);?>'" 
+                                            class="btn btn-light">Visualizar</button>
                                     <button type="button" class="btn btn-light">Modificar</button>
                                     <button type="button" class="btn btn-light">Deletar</button>
                                 </td>
@@ -57,8 +59,6 @@
 
 <?php $v->start("scripts"); ?>
 <script>
-    function displayPaciente() {
-        return location.href = "<?= $router->route("web.pacientes", ["id" => $paciente->id]);?>";
-    }
+
 </script>
 <?php $v->end(); ?>

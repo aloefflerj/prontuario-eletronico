@@ -19,11 +19,15 @@ $router->get("/", "Web:index", "web.index");
 
 /**
  * WEB
- * teste
+ * Pacientes
  */
 $router->group("pacientes");
 $router->get("/{id}", "Web:pacientes", "web.pacientes");
 
+/**
+ * WEB
+ * Teste
+ */
 
 $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
