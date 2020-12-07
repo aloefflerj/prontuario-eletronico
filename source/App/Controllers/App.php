@@ -27,13 +27,13 @@ class App extends Controller
     
     public function home(): void
     {
-        //**FAZER a Validação de quais pacientes serão deste profissional
-
-        //Consulta pacientes
-        $pacientes = $this->pacientes->find()->fetch(true);
+        //Consulta o profissional
         $profissional = $this->profissionais->findById($_SESSION["profissional"]);
+        //Consulta pacientes do profissional
+        $pacientesDoProfissional =  $this->pacientes->filterBy("idProfissional", $_SESSION["profissional"]);
+        //Renderiza a página
         echo $this->view->render("app/home", [
-            "pacientes" => $pacientes,
+            "pacientes" => $pacientesDoProfissional,
             "profissional" => $profissional
             ]);
     }
