@@ -4,7 +4,7 @@ namespace Source\App\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
 
-class Pessoas extends DataLayer
+abstract class Pessoas extends DataLayer
 {
     public function __construct($tabela, $colunas = [])
     {
