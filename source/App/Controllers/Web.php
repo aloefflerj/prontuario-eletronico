@@ -17,46 +17,16 @@ class Web extends Controller
         $this->pacientes = new Pacientes();
         /**@var Profissionais */
         $this->profissionais = new Profissionais();
-        /**@var Pessoas */
-        $this->pessoas = new Pessoas("a",["a"]);
+
+        if(!empty($_SESSION["profissional"])){
+            $this->router->redirect("app.home");
+        }
     }
 
-    /**
-     * Home
-     */
     public function home(): void
     {
-        $pacientes = $this->pacientes->find()->fetch(true);
-        echo $this->view->render("web/home", ["pacientes"=>$pacientes]);
+        echo $this->view->render("web/home");
     }
-
-    /**
-     * Pacientes
-     */
-    public function index(): void
-    {
-        // Pega todos os Pacientes
-        $pacientes = $this->pacientes->find()->fetch(true);
-        echo $this->view->render("app/index", ["pacientes" => $pacientes]);
-    }
-
-    public function pacientes($data): void
-    {
-        // Pega todos os Pacientes
-        $paciente = $this->pacientes->findById($data["id"]);
-        //echo($paciente->nome);
-        echo $this->view->render("app/pacientes", ["paciente" => $paciente]);
-    }
-
-    /**
-     * Add
-     */
-    // public function add($data): void
-    // {
-    //     echo $data["nome"];
-    //     // Adiciona no banco
-    //     // $this->pacientes->add($data["nome"], $data["sobrenome"]);
-    // }
 
     /**
      * Teste

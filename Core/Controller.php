@@ -32,7 +32,7 @@ class Controller
 
     public function ajaxMessage(string $message, string $type): string
     {   
-        return json_encode(flash($message, $type));
+        return json_encode(flash($type, $message));
     }
 
 }

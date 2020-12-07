@@ -4,13 +4,21 @@ namespace Source\App\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
 
-class Pacientes extends Pessoas
+class Pacientes extends DataLayer
 {
     public function __construct()
     {
-        parent::__construct("pacientes", [
-             "idEvolucao",
-            "idAnamnese", "idMedicamentos", "idProfissional", "idSinaisVitais"
+        parent:: __construct("pacientes", [
+            "nome", 
+            "cpf", 
+            "telefone", 
+            "endereco", 
+            "anoNasc", 
+            "idEvolucao", 
+            "idAnamnese", 
+            "idMedicamentos", 
+            "idProfissional", 
+            "idSinaisVitais"
         ]);
     }
 

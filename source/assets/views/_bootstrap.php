@@ -21,9 +21,10 @@
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Sistema de Prontuário Eletrônico</a>
             <form class="form-inline">
-                <span class="nav-link">Sign Out</span>
+                <!--<span class="nav-link">Sign Out</span>-->
+                
             </form>
-            </form>
+            <a href="<?= $router->route("auth.logout"); ?>">Logout</a>
         </nav>
     <?php
     endif;

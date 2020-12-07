@@ -5,7 +5,7 @@
         <!-- Titulo -->
         <main class="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4" role="main">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-                <h1 class="h2">Dashboard</h1>
+                <h1 class="h2">Bem Vindo, <?= $profissional->nome ?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
                         <button class="btn btn-sm btn-outline-secondary">Share</button>
