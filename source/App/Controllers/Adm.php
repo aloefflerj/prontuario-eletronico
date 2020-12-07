@@ -13,6 +13,6 @@ class Adm extends Controller
 
     public function register($data): void
     {
-        
+        echo $this->view->render("adm/register");
     }
 }

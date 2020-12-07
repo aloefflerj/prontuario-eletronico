@@ -29,6 +29,16 @@ class Auth extends Controller
             echo $this->ajaxMessage("A confirmação deve ser igual a senha", "error");
             return;
         }
+        var_dump($data);
+        $this->profissionais->register(
+            $data["nome"],
+            $data["cpf"],
+            $data["telefone"],
+            $data["endereco"],
+            $data["anoNasc"],
+            $data["especializacao"],
+            $data["senha"]
+        );
         
     }
 }

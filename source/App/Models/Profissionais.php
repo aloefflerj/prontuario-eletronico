@@ -2,11 +2,13 @@
 
 namespace Source\App\Models;
 
-class Profissionais extends Pessoas
+use CoffeeCode\DataLayer\DataLayer;
+
+class Profissionais extends DataLayer
 {
     public function __construct() 
     {
-        parent:: __construct("profissionais", ["especializacao", "senha"]);
+        parent:: __construct("profissionais", ["nome", "cpf", "telefone", "endereco", "anoNasc", "especializacao", "senha"]);
     }
 
     public function save(): bool
@@ -38,16 +40,16 @@ class Profissionais extends Pessoas
 
     protected function validatePassword(): bool
     {
-        if(empty($this->password || strlen($this->passoword) < 5)){
+        if(empty($this->senha) || strlen($this->senha) < 5){
             flash("A senha deve ter pelo menos 5 caracteres");
             return false;
         }
 
-        if(password_get_info($this->password)["algo"]){
+        if(password_get_info($this->senha)["algo"]){
             return true;
         }
 
-        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->senha = password_hash($this->senha, PASSWORD_DEFAULT);
         return true;
     }
     

@@ -34,6 +34,12 @@ $router->get("/{id}", "Web:pacientes", "web.pacientes");
 $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
 
+/**
+ * Auth
+ */
+$router->group("auth");
+$router->post("/register", "Auth:register", "auth.register");
+
 /**Adm
  * Register
  */
