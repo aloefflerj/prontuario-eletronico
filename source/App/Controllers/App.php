@@ -37,4 +37,15 @@ class App extends Controller
             "profissional" => $profissional
             ]);
     }
+
+    public function detalhes($data): void
+    {
+        $paciente = $this->pacientes->findById($data["id"]);
+        if($paciente->idProfissional != $_SESSION["profissional"]){
+            $this->router->redirect("app.home");
+        }
+        echo $this->view->render("app/detalhes_pacientes", [
+            "paciente" => $paciente
+            ]);
+    }
 }

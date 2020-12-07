@@ -40,7 +40,7 @@
                                 <td> <?= $paciente->cpf; ?> </td>
                                 <td>
                                     <button type="button" 
-                                            onclick="location.href='<?= $router->route('web.pacientes', ['id' => $paciente->id]);?>'" 
+                                            onclick="location.href='<?= $router->route('app.detalhes', ['id' => $paciente->id]);?>'" 
                                             class="btn btn-light">Visualizar</button>
                                     <button type="button" class="btn btn-light">Modificar</button>
                                     <button type="button" class="btn btn-light">Deletar</button>

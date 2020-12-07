@@ -41,6 +41,7 @@ $router->get("/logout", "Auth:logout", "auth.logout");
  */
 $router->group("pacientes");
 $router->get("/", "App:home", "app.home");
+$router->get("/detalhes/{id}", "App:detalhes", "app.detalhes");
 
 /**Adm
  * Register
