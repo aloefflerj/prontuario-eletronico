@@ -52,5 +52,17 @@ class Profissionais extends DataLayer
         $this->senha = password_hash($this->senha, PASSWORD_DEFAULT);
         return true;
     }
+
+    public function findBy(string $param, string $value = null): Profissionais
+    {
+        $return = $this->find("{$param} = :ccode", "ccode={$value}")->fetch();
+        if ($return)
+        {
+            return $return;
+        }else{
+            return $this;
+        }
+        
+    }
     
 }

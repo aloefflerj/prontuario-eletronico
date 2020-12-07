@@ -1,13 +1,15 @@
-<?php $v->layout("_theme") ?>
-<h1><?= site("name"); ?></h1>
+<?php $v->layout("_bootstrap") ?>
 
-<?php 
-    if($pacientes):
-        foreach($pacientes as $paciente):          
-?>
-    <p><strong>Nome</strong> <?= $paciente->nome ?> </p>
-    <p><strong>Sobrenome</strong> <?= $paciente->sobrenome ?> </p>
-<?php
-        endforeach;
-    endif;
-?>
+<h2>Login</h2>
+
+<form action="<?= $router->route("auth.login"); ?>" method="post">
+
+    <label for="cpf">Cpf: </label>
+    <input type="text" name="cpf" id="cpf">
+
+    <label for="senha">Senha: </label>
+    <input type="password" name="senha" id="senha">
+
+    <input type="submit" value="Login">
+
+</form>

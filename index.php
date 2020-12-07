@@ -21,13 +21,6 @@ $router->get("/", "Web:home", "web.home");
 
 /**
  * WEB
- * Pacientes
- */
-$router->group("pacientes");
-$router->get("/{id}", "Web:pacientes", "web.pacientes");
-
-/**
- * WEB
  * Teste
  */
 
@@ -39,6 +32,15 @@ $router->get("/", "Web:teste", "web.teste");
  */
 $router->group("auth");
 $router->post("/register", "Auth:register", "auth.register");
+$router->post("/login", "Auth:login", "auth.login");
+$router->get("/logout", "Auth:logout", "auth.logout");
+
+/**
+ * App
+ * Home
+ */
+$router->group("pacientes");
+$router->get("/", "App:home", "app.home");
 
 /**Adm
  * Register
