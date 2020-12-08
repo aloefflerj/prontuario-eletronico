@@ -5,7 +5,7 @@
             <div class="col-md-12 mt-4">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Página Inicial</a></li>
+                        <li class="breadcrumb-item"><a href="<?= $router->route("app.home"); ?>">Página Inicial</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Paciente</li>
                     </ol>
                 </nav>
@@ -33,6 +33,20 @@
             <ul class="nav nav-tabs pt-2">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Medicamentos</a>
+                    <?php 
+                        if($medicamentos):
+                            foreach($medicamentos as $medicamento): 
+                    ?>
+                        <ul style="list-style-type: none">
+                            <li><strong>    <?= $medicamento->nome ?></strong></li>
+                            <li>Período:    <?= $medicamento->periodo ?></li>
+                            <li>Horário:    <?= $medicamento->horario ?></li>
+                            <li>Via:        <?= $medicamento->via ?></li>
+                        </ul>
+                    <?php   
+                            endforeach; 
+                        endif;
+                    ?>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Evolução</a>

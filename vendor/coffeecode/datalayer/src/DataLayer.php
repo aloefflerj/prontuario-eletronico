@@ -293,4 +293,28 @@ abstract class DataLayer
 
         return $safe;
     }
+
+    public function findBy(string $param, string $value = null)
+    {
+        $return = $this->find("{$param} = :ccode", "ccode={$value}")->fetch();
+        if ($return)
+        {
+            return $return;
+        }else{
+            return $this;
+        }
+        
+    }
+
+    public function filterBy(string $param, string $value = null)
+    {
+        $return = $this->find("{$param} = :ccode", "ccode={$value}")->fetch(true);
+        if ($return)
+        {
+            return $return;
+        }else{
+            return $this;
+        }
+        
+    }
 }

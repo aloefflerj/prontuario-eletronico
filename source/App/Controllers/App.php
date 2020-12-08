@@ -3,6 +3,7 @@
 namespace Source\App\Controllers;
 
 use Core\Controller;
+use Source\App\Models\Medicamentos;
 use Source\App\Models\Pacientes;
 use Source\App\Models\Profissionais;
 
@@ -15,6 +16,8 @@ class App extends Controller
         $this->pacientes = new Pacientes();
         /**@var Profissionais */
         $this->profissionais = new Profissionais();
+        /**@var Medicamentos */
+        $this->medicamentos = new Medicamentos();
 
         if(empty($_SESSION["profissional"]) || !$this->profissionais = (new Profissionais)->findById($_SESSION["profissional"]))
         {
@@ -40,12 +43,18 @@ class App extends Controller
 
     public function detalhes($data): void
     {
+        //Procura e seleciona o paciente
         $paciente = $this->pacientes->findById($data["id"]);
+        //Valida se pertence ao devido profissional
         if($paciente->idProfissional != $_SESSION["profissional"]){
             $this->router->redirect("app.home");
         }
+        //Procura os medicamentos do paciente
+        $medicamentos = $this->medicamentos->filterBy("idPaciente", $data["id"]);
+        //Renderiza a página
         echo $this->view->render("app/detalhes_pacientes", [
-            "paciente" => $paciente
+            "paciente"      => $paciente,
+            "medicamentos"  => $medicamentos
             ]);
     }
 }
