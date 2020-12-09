@@ -33,7 +33,19 @@
             <ul class="nav nav-tabs pt-2">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Medicamentos</a>
-                    <?php 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" data-evolucao="<?= $router->route("app.evolucao", ["id" => $paciente->id]) ?>">Evolução</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sinais Vitais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Anamnese</a>
+                </li>
+            </ul>
+            <div id="response">
+            <?php 
                         if($medicamentos):
                             foreach($medicamentos as $medicamento): 
                     ?>
@@ -47,16 +59,22 @@
                             endforeach; 
                         endif;
                     ?>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Evolução</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sinais Vitais</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Anamnese</a>
-                </li>
-            </ul>
+            </div>
         </div>
     </div>
+
+    <?php $v->start("scripts");?>
+
+    <script>
+        $(document).ready(function(){
+
+            $("[data-evolucao]").on("click", function(e){
+                e.preventDefault();
+                var data = $(this).data();
+                console.log(data.evolucao);
+            });
+
+        });
+    </script>
+
+    <?php $v->end(); ?>

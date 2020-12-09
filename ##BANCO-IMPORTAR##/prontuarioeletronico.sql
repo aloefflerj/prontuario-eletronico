@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Dez-2020 às 23:45
+-- Tempo de geração: 10-Dez-2020 às 00:51
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.4.11
 
@@ -24,6 +24,54 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `evolucao`
+--
+
+CREATE TABLE `evolucao` (
+  `id` int(11) NOT NULL,
+  `idPaciente` int(11) NOT NULL,
+  `situacao` varchar(200) NOT NULL,
+  `observacoes` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `evolucao`
+--
+
+INSERT INTO `evolucao` (`id`, `idPaciente`, `situacao`, `observacoes`, `created_at`, `updated_at`) VALUES
+(1, 3, 'O paciente foi atendido tal tal tal...', 'Paciente alérgico à xxxxx', '2020-12-09 21:42:02', '2020-12-09 21:42:02');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `medicamentos`
+--
+
+CREATE TABLE `medicamentos` (
+  `id` int(11) NOT NULL,
+  `idPaciente` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `periodo` varchar(50) NOT NULL,
+  `horario` varchar(50) NOT NULL,
+  `via` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `medicamentos`
+--
+
+INSERT INTO `medicamentos` (`id`, `idPaciente`, `nome`, `periodo`, `horario`, `via`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Dipirona Líquida', '2 dias', '19h', 'oral', '2020-12-08 00:21:04', '2020-12-08 00:23:39'),
+(2, 3, 'Cloroquina', '900 dias', 'De três em três horas', 'Anal', '2020-12-08 00:42:16', '2020-12-08 00:42:16'),
+(3, 4, 'Simeticona', '5 dias', '6h', 'oral', '2020-12-08 00:43:03', '2020-12-08 00:43:03');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `pacientes`
 --
 
@@ -40,7 +88,7 @@ CREATE TABLE `pacientes` (
   `idProfissional` int(11) NOT NULL,
   `idSinaisVitais` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -48,31 +96,10 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNasc`, `idEvolucao`, `idAnamnese`, `idMedicamentos`, `idProfissional`, `idSinaisVitais`, `created_at`, `updated_at`) VALUES
-(1, 'Paciente 1', '98765432101', '(51) 777777', 'Rua tal n sei o q', '2000', 1, 1, 1, 1, 1, '2020-12-07 05:18:05', NULL);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pessoas`
---
-
-CREATE TABLE `pessoas` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `cpf` int(11) NOT NULL,
-  `telefone` int(11) NOT NULL,
-  `endereco` varchar(200) NOT NULL,
-  `anoNasc` int(4) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `pessoas`
---
-
-INSERT INTO `pessoas` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNasc`, `created_at`, `updated_at`) VALUES
-(1, 'Dráuzio', 1231231234, 321321321, 'av tal', 1990, '2020-12-05 20:59:20', NULL);
+(1, 'Paciente 1', '98765432101', '(51) 777777', 'Rua tal n sei o q', '2000', 1, 1, 1, 1, 1, '2020-12-07 05:18:05', '2020-12-08 00:21:50'),
+(2, 'Paciente Fulano', '987654321', '12321654897', 'Av sei lá', '1820', 1, 1, 1, 12, 3, '2020-12-07 22:56:44', '2020-12-08 00:21:50'),
+(3, 'Paciente de tal', '321321321', '32132132132', 'Av sei lá o q e tal', '3211', 1, 1, 1, 15, 3, '2020-12-07 23:22:05', '0000-00-00 00:00:00'),
+(4, 'Paciente joao albertp', '32158469684', '5456513', 'asdasd', '1990', 1, 1, 1, 15, 3, '2020-12-07 23:25:08', '2020-12-07 23:25:08');
 
 -- --------------------------------------------------------
 
@@ -89,8 +116,8 @@ CREATE TABLE `profissionais` (
   `anoNasc` varchar(11) NOT NULL,
   `especializacao` varchar(50) NOT NULL,
   `senha` char(128) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -109,15 +136,21 @@ INSERT INTO `profissionais` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNa
 --
 
 --
--- Índices para tabela `pacientes`
+-- Índices para tabela `evolucao`
 --
-ALTER TABLE `pacientes`
+ALTER TABLE `evolucao`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `pessoas`
+-- Índices para tabela `medicamentos`
 --
-ALTER TABLE `pessoas`
+ALTER TABLE `medicamentos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `pacientes`
+--
+ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -131,16 +164,22 @@ ALTER TABLE `profissionais`
 --
 
 --
--- AUTO_INCREMENT de tabela `pacientes`
+-- AUTO_INCREMENT de tabela `evolucao`
 --
-ALTER TABLE `pacientes`
+ALTER TABLE `evolucao`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `pessoas`
+-- AUTO_INCREMENT de tabela `medicamentos`
 --
-ALTER TABLE `pessoas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `medicamentos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `pacientes`
+--
+ALTER TABLE `pacientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `profissionais`

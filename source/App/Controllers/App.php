@@ -3,6 +3,7 @@
 namespace Source\App\Controllers;
 
 use Core\Controller;
+use Source\App\Models\Evolucao;
 use Source\App\Models\Medicamentos;
 use Source\App\Models\Pacientes;
 use Source\App\Models\Profissionais;
@@ -18,6 +19,8 @@ class App extends Controller
         $this->profissionais = new Profissionais();
         /**@var Medicamentos */
         $this->medicamentos = new Medicamentos();
+        /**@var Evolucao */
+        $this->evolucao = new Evolucao;
 
         if(empty($_SESSION["profissional"]) || !$this->profissionais = (new Profissionais)->findById($_SESSION["profissional"]))
         {
@@ -56,5 +59,12 @@ class App extends Controller
             "paciente"      => $paciente,
             "medicamentos"  => $medicamentos
             ]);
+    }
+
+    public function evolucao($data): void
+    {
+        //Procura os medicamentos
+        $evolucao = $this->evolucao->filterBy("idPaciente", $data["id"]);
+
     }
 }
