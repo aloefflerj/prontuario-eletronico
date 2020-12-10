@@ -61,10 +61,22 @@ class App extends Controller
             ]);
     }
 
-    public function evolucao($data): void
+    public function medicamentos($data): void
     {
-        //Procura os medicamentos
-        $evolucao = $this->evolucao->filterBy("idPaciente", $data["id"]);
+        //Procura os medicamentos do paciente
+        $medicamentos = $this->medicamentos->filterBy("idPaciente", $data["id"]);
+
+        echo ($this->view->render("app/fragments/medicamentos", ["medicamentos" => $medicamentos]));
 
     }
+
+    public function evolucao($data): void
+    {
+        //Procura a evolução do paciente
+        $evolucao = $this->evolucao->order("created_at DESC")->filterBy("idPaciente", $data["id"]);
+
+        echo ($this->view->render("app/fragments/evolucao", ["evolucao" => $evolucao]));
+
+    }
+
 }

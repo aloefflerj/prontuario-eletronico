@@ -32,7 +32,7 @@
             </div>
             <ul class="nav nav-tabs pt-2">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Medicamentos</a>
+                    <a class="nav-link active" href="" data-medicamentos="<?= $router->route("app.medicamentos", ["id" => $paciente->id]); ?>">Medicamentos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="" data-evolucao="<?= $router->route("app.evolucao", ["id" => $paciente->id]) ?>">Evolução</a>
@@ -71,7 +71,10 @@
             $("[data-evolucao]").on("click", function(e){
                 e.preventDefault();
                 var data = $(this).data();
-                console.log(data.evolucao);
+                console.log(data.evolucao);        
+                $.post(data.evolucao, function(e){
+                    $("#response").replaceWith(e);
+                });
             });
 
         });
