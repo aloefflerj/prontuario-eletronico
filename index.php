@@ -12,6 +12,8 @@ use CoffeeCode\Router\Router;
 $router = new Router(site());
 $router->namespace("Source\App\Controllers");
 
+/* WEB --------------------------------------------- */
+
 /**
  * WEB
  * home
@@ -27,16 +29,20 @@ $router->get("/", "Web:home", "web.home");
 $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
 
+/* AUTH --------------------------------------------- */
+
 /**
- * Auth
+ * AUTH
  */
 $router->group("auth");
 $router->post("/register", "Auth:register", "auth.register");
 $router->post("/login", "Auth:login", "auth.login");
 $router->get("/logout", "Auth:logout", "auth.logout");
 
+/* APP --------------------------------------------- */
+
 /**
- * App
+ * APP
  * Home
  */
 $router->group("pacientes");
@@ -47,11 +53,25 @@ $router->post("/evolucao/{id}", "App:evolucao", "app.evolucao");
 $router->post("/sinais-vitais/{id}", "App:sinaisVitais", "app.sinaisVitais");
 $router->post("/anamnese/{id}", "App:anamnese", "app.anamnese");
 
-/**Adm
- * Register
+
+/* ADM --------------------------------------------- */
+
+/**
+ * ADM
+ * Home
  */
 $router->group("adm");
 $router->get("/", "Adm:home", "adm.home");
+$router->get("/consulta", "Adm:consulta", "adm.consulta");
+$router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
+
+$router->get("/paciente", "Adm:paciente", "adm.paciente");
+$router->post("/paciente/novo", "Adm:novoPaciente", "adm.novoPaciente");
+
+$router->get("/profissional", "Adm:profissional", "adm.profissional");
+$router->post("/profissional/novo", "Adm:novoProfissional", "adm.novoProfissional");
+
+$router->post("/consulta/new", "Adm:novaConsulta", "adm.novaConsulta");
 $router->get("/register", "Adm:register", "adm.register");
 
 /**
