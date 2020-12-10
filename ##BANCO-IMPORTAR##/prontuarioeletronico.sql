@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Dez-2020 às 02:49
+-- Tempo de geração: 10-Dez-2020 às 17:02
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `prontuarioeletronico`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `anamnese`
+--
+
+CREATE TABLE `anamnese` (
+  `id` int(11) NOT NULL,
+  `idPaciente` int(11) NOT NULL,
+  `qp` varchar(200) NOT NULL,
+  `hda` varchar(200) NOT NULL,
+  `antecedentesPessoais` varchar(200) NOT NULL,
+  `antecedentesFamiliares` varchar(200) NOT NULL,
+  `habitos` varchar(200) NOT NULL,
+  `revisaoSistemas` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `anamnese`
+--
+
+INSERT INTO `anamnese` (`id`, `idPaciente`, `qp`, `hda`, `antecedentesPessoais`, `antecedentesFamiliares`, `habitos`, `revisaoSistemas`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Enxaqueca constante.', 'Já teve sarampo.', 'Crescimento atrasado; parto normal...', 'Doença hereditária na família.', 'Fumar, jogar bola.', 'Cansaço na cabeça do dia a dia.', '2020-12-10 15:43:19', '2020-12-10 15:43:19');
 
 -- --------------------------------------------------------
 
@@ -127,14 +153,46 @@ CREATE TABLE `profissionais` (
 
 INSERT INTO `profissionais` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNasc`, `especializacao`, `senha`, `created_at`, `updated_at`) VALUES
 (8, 'Matcha', '11111111111', '99999999999', 'Av Assis Brasil, 123456', '2018', 'Ortopedista', '$2y$10$4ZMiPhf8Mv0ROYi1vtZiee5k7TubhfJ8j2d..igelQP', '2020-12-07 07:45:45', '2020-12-07 07:45:45'),
-(10, 'Áuzio', '8888888888', '(51) 99999-', 'Av Sertório', '1810', 'Oncologista', '$2y$10$WfDwIfrT5RmZVFisvPOvNORnO9GVlQnHqZw.j5le4fy', '2020-12-07 08:33:34', '2020-12-07 08:33:34'),
+(10, 'Frank', '8888888888', '(51) 99999-', 'Av Sertório', '1810', 'Oncologista', '$2y$10$WfDwIfrT5RmZVFisvPOvNORnO9GVlQnHqZw.j5le4fy', '2020-12-07 08:33:34', '2020-12-07 08:33:34'),
 (12, 'Anderson', '12345678910', '(51) 99999-', 'av tal de tal, 666', '1994', 'Oncologista', '$2y$10$nDS923T4VCybjuaLcK1PpOd4fLcDO3S3PQenmajKg7tYAUjIJGOWS', '2020-12-07 08:50:58', '2020-12-07 08:50:58'),
 (13, 'Susan', '98765432110', '(51) 99999-', 'Av Sertório', '1994', 'Dermatologista', '$2y$10$kFsGLczNYvPdprkKwiyWi.bwOBbqj4pMg2qVZYWR325GVewdCfrXO', '2020-12-07 09:36:02', '2020-12-07 09:36:02'),
-(15, 'Frankeinstein', '123', '123', 'asd', '32131', 'Psicólogo', '$2y$10$0f1FhMPEPNiu8bXrSWMzI.RJSS1f7VgkcvtoDf3eAiEPUyG4KJaNu', '2020-12-07 09:41:37', '2020-12-07 09:41:37');
+(15, 'Áuzio', '123', '123', 'asd', '32131', 'Psicólogo', '$2y$10$0f1FhMPEPNiu8bXrSWMzI.RJSS1f7VgkcvtoDf3eAiEPUyG4KJaNu', '2020-12-07 09:41:37', '2020-12-07 09:41:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `sinaisvitais`
+--
+
+CREATE TABLE `sinaisvitais` (
+  `id` int(11) NOT NULL,
+  `idPaciente` int(11) NOT NULL,
+  `pressao` varchar(20) NOT NULL,
+  `batimentos` varchar(20) NOT NULL,
+  `saturacaoOxigenio` varchar(100) NOT NULL,
+  `nivelDioxidoCarbono` varchar(100) NOT NULL,
+  `temperatura` double NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `sinaisvitais`
+--
+
+INSERT INTO `sinaisvitais` (`id`, `idPaciente`, `pressao`, `batimentos`, `saturacaoOxigenio`, `nivelDioxidoCarbono`, `temperatura`, `created_at`, `updated_at`) VALUES
+(1, 3, '12/8', '60', 'seilá', 'seilá', 36, '2020-12-10 14:58:05', '2020-12-10 14:58:05'),
+(2, 3, '13/9', '100', 'Não sei', 'Não sei', 39, '2020-12-10 14:58:05', '2020-12-10 14:58:05');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `anamnese`
+--
+ALTER TABLE `anamnese`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `evolucao`
@@ -161,8 +219,20 @@ ALTER TABLE `profissionais`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `sinaisvitais`
+--
+ALTER TABLE `sinaisvitais`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `anamnese`
+--
+ALTER TABLE `anamnese`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `evolucao`
@@ -187,6 +257,12 @@ ALTER TABLE `pacientes`
 --
 ALTER TABLE `profissionais`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de tabela `sinaisvitais`
+--
+ALTER TABLE `sinaisvitais`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

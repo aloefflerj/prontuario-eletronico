@@ -3,6 +3,7 @@
 namespace Source\App\Controllers;
 
 use Core\Controller;
+use Source\App\Models\Anamnese;
 use Source\App\Models\Evolucao;
 use Source\App\Models\Medicamentos;
 use Source\App\Models\Pacientes;
@@ -24,6 +25,8 @@ class App extends Controller
         $this->evolucao = new Evolucao;
         /**@var SinaisVirais */
         $this->sinaisVitais = new SinaisVitais();
+        /**@var Anamnese */
+        $this->anamnese = new Anamnese();
 
         if(empty($_SESSION["profissional"]) || !$this->profissionais = (new Profissionais)->findById($_SESSION["profissional"]))
         {
@@ -88,6 +91,15 @@ class App extends Controller
         $sinaisVitais = $this->sinaisVitais->order("created_at DESC")->filterBy("idPaciente", $data["id"]);
 
         echo ($this->view->render("app/fragments/sinaisVitais", ["sinaisVitais" => $sinaisVitais]));
+
+    }
+
+    public function anamnese($data): void
+    {
+        //Procura os sinais vitais do paciente e ordena do registro mais novo ao mais velho
+        $anamnese = $this->anamnese->order("created_at DESC")->filterBy("idPaciente", $data["id"]);
+
+        echo ($this->view->render("app/fragments/anamnese", ["anamnese" => $anamnese]));
 
     }
 

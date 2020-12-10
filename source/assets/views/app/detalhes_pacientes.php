@@ -41,7 +41,7 @@
                     <a class="nav-link" href="" data-sinais="<?= $router->route("app.sinaisVitais", ["id" => $paciente->id]); ?>">Sinais Vitais</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Anamnese</a>
+                    <a class="nav-link" href="" data-anamnese="<?= $router->route("app.anamnese", ["id" => $paciente->id]); ?>">Anamnese</a>
                 </li>
             </ul>
             <div id="response">
@@ -86,10 +86,16 @@
 
             $("[data-sinais]").on("click", function(e){
                 e.preventDefault();
-                var data = $(this).data();
-                console.log(data.sinais);      
+                var data = $(this).data();   
                 $.post(data.sinais, function(e){
-                    
+                    $("#response").replaceWith(e);
+                });
+            });
+
+            $("[data-anamnese]").on("click", function(e){
+                e.preventDefault();
+                var data = $(this).data();     
+                $.post(data.anamnese, function(e){                    
                     $("#response").replaceWith(e);
                 });
             });
