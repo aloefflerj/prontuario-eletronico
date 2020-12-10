@@ -19,7 +19,7 @@
         echo $v->section("navbar");
     else:?>
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Sistema de Prontuário Eletrônico</a>
+            <a class="navbar-brand" href="<?= $router->route("web.home"); ?>">Sistema de Prontuário Eletrônico</a>
             <form class="form-inline">
                 <!--<span class="nav-link">Sign Out</span>-->
                 

@@ -1,3 +1,5 @@
+<h1>Registro de Profissionais</h1>
+
 <?php $v->layout("_bootstrap");?>
 
 <form action="<?= $router->route("auth.register"); ?>" method="post">
