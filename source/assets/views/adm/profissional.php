@@ -2,7 +2,7 @@
 
 <?php $v->layout("_bootstrap");?>
 
-<form action="<?= $router->route("auth.register"); ?>" method="post">
+<form action="<?= $router->route("auth.profissionalRegister"); ?>" method="post">
 
 <label for="nome">Nome: </label>
 <input type="text" name="nome" id="nome">

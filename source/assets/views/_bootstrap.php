@@ -24,7 +24,22 @@
                 <!--<span class="nav-link">Sign Out</span>-->
                 
             </form>
-            <a href="<?= $router->route("auth.logout"); ?>">Logout</a>
+
+            <?php if(!empty($_SESSION["profissional"]) || !empty($_SESSION["user"]) || !empty($_SESSION["adm"])): ?>
+
+                <a href="<?php 
+                    if(!empty($_SESSION["profissional"])): 
+                        echo $router->route("auth.profissionalLogout");
+                    elseif(!empty($_SESSION["user"])):
+                        echo $router->route("auth.userLogout");
+                    elseif(!empty($_SESSION["adm"])):
+                        echo $router->route("auth.admLogout");
+                    else:
+                        echo $router->route("web.home");
+                    endif; 
+                ?>">Logout</a>
+                
+            <?php endif; ?>
         </nav>
     <?php
     endif;

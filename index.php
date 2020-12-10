@@ -20,6 +20,10 @@ $router->namespace("Source\App\Controllers");
  */
 $router->group(null);
 $router->get("/", "Web:home", "web.home");
+$router->get("/user", "Web:user", "web.user");
+$router->get("/profissional", "Web:profissional", "web.profissional");
+$router->get("/adm", "Web:adm", "web.adm");
+//$router->get("/add/{email}/{senha}", "Web:add", "web.add");
 
 /**
  * WEB
@@ -33,11 +37,19 @@ $router->get("/", "Web:teste", "web.teste");
 
 /**
  * AUTH
+ * profissional
  */
 $router->group("auth");
-$router->post("/register", "Auth:register", "auth.register");
-$router->post("/login", "Auth:login", "auth.login");
-$router->get("/logout", "Auth:logout", "auth.logout");
+$router->post("/profissional/register", "Auth:profissionalRegister", "auth.profissionalRegister");
+$router->post("/profissional/login", "Auth:profissionalLogin", "auth.profissionalLogin");
+$router->get("/profissional/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
+
+/**
+ * AUTH
+ * adm
+ */
+$router->post("/adm/login", "Auth:admLogin", "auth.admLogin");
+$router->get("/adm/logout", "Auth:admLogout", "auth.admLogout");
 
 /* APP --------------------------------------------- */
 
@@ -54,25 +66,33 @@ $router->post("/sinais-vitais/{id}", "App:sinaisVitais", "app.sinaisVitais");
 $router->post("/anamnese/{id}", "App:anamnese", "app.anamnese");
 
 
+/* USER --------------------------------------------- */
+
+/**
+ * USER
+ * 
+ */
+$router->group("user");
+
+$router->get("/pacientes", "Adm:paciente", "adm.paciente");
+
+$router->get("/profissionais", "Adm:profissional", "adm.profissional");
+
+$router->get("/consultas", "Adm:consultas", "adm.consultas");
+$router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
+
+
 /* ADM --------------------------------------------- */
 
 /**
  * ADM
  * Home
  */
-$router->group("adm");
+$router->group("admin");
 $router->get("/", "Adm:home", "adm.home");
-$router->get("/consulta", "Adm:consulta", "adm.consulta");
-$router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
-
-$router->get("/paciente", "Adm:paciente", "adm.paciente");
-$router->post("/paciente/novo", "Adm:novoPaciente", "adm.novoPaciente");
-
-$router->get("/profissional", "Adm:profissional", "adm.profissional");
-$router->post("/profissional/novo", "Adm:novoProfissional", "adm.novoProfissional");
-
-$router->post("/consulta/new", "Adm:novaConsulta", "adm.novaConsulta");
-$router->get("/register", "Adm:register", "adm.register");
+$router->get("/cadastro/user", "Adm:user", "adm.user");
+$router->get("/cadastro/profissional", "Adm:profissional", "adm.profissional");
+$router->get("/cadastro/paciente", "Adm:paciente", "adm.paciente");
 
 /**
  * WEB
