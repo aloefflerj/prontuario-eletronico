@@ -38,7 +38,7 @@
                     <a class="nav-link" href="" data-evolucao="<?= $router->route("app.evolucao", ["id" => $paciente->id]) ?>">Evolução</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sinais Vitais</a>
+                    <a class="nav-link" href="" data-sinais="<?= $router->route("app.sinaisVitais", ["id" => $paciente->id]); ?>">Sinais Vitais</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Anamnese</a>
@@ -70,9 +70,26 @@
 
             $("[data-evolucao]").on("click", function(e){
                 e.preventDefault();
-                var data = $(this).data();
-                console.log(data.evolucao);        
+                var data = $(this).data();      
                 $.post(data.evolucao, function(e){
+                    $("#response").replaceWith(e);
+                });
+            });
+
+            $("[data-medicamentos]").on("click", function(e){
+                e.preventDefault();
+                var data = $(this).data();      
+                $.post(data.medicamentos, function(e){
+                    $("#response").replaceWith(e);
+                });
+            });
+
+            $("[data-sinais]").on("click", function(e){
+                e.preventDefault();
+                var data = $(this).data();
+                console.log(data.sinais);      
+                $.post(data.sinais, function(e){
+                    
                     $("#response").replaceWith(e);
                 });
             });

@@ -44,6 +44,7 @@ $router->get("/", "App:home", "app.home");
 $router->get("/detalhes/{id}", "App:detalhes", "app.detalhes");
 $router->post("/medicamentos/{id}", "App:medicamentos", "app.medicamentos");
 $router->post("/evolucao/{id}", "App:evolucao", "app.evolucao");
+$router->post("/sinais-vitais/{id}", "App:sinaisVitais", "app.sinaisVitais");
 
 /**Adm
  * Register

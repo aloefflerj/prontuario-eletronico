@@ -7,6 +7,7 @@ use Source\App\Models\Evolucao;
 use Source\App\Models\Medicamentos;
 use Source\App\Models\Pacientes;
 use Source\App\Models\Profissionais;
+use Source\App\Models\SinaisVitais;
 
 class App extends Controller
 {
@@ -21,6 +22,8 @@ class App extends Controller
         $this->medicamentos = new Medicamentos();
         /**@var Evolucao */
         $this->evolucao = new Evolucao;
+        /**@var SinaisVirais */
+        $this->sinaisVitais = new SinaisVitais();
 
         if(empty($_SESSION["profissional"]) || !$this->profissionais = (new Profissionais)->findById($_SESSION["profissional"]))
         {
@@ -72,10 +75,19 @@ class App extends Controller
 
     public function evolucao($data): void
     {
-        //Procura a evolução do paciente
+        //Procura a evolução do paciente e ordena do registro mais novo ao mais velho
         $evolucao = $this->evolucao->order("created_at DESC")->filterBy("idPaciente", $data["id"]);
 
         echo ($this->view->render("app/fragments/evolucao", ["evolucao" => $evolucao]));
+
+    }
+
+    public function sinaisVitais($data): void
+    {
+        //Procura os sinais vitais do paciente e ordena do registro mais novo ao mais velho
+        $sinaisVitais = $this->sinaisVitais->order("created_at DESC")->filterBy("idPaciente", $data["id"]);
+
+        echo ($this->view->render("app/fragments/sinaisVitais", ["sinaisVitais" => $sinaisVitais]));
 
     }
 
