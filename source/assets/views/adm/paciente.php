@@ -1,8 +1,8 @@
-<h1>Registro de Profissionais</h1>
-
 <?php $v->layout("_bootstrap");?>
 
-<form action="<?= $router->route("auth.register"); ?>" method="post">
+<h1>Registro de Paciente</h1>
+
+<form action="<?= $router->route("auth.pacienteRegister"); ?>" method="post">
 
 <label for="nome">Nome: </label>
 <input type="text" name="nome" id="nome">
@@ -19,15 +19,6 @@
 <label for="anoNasc">Ano de Nascimento: </label>
 <input type="text" name="anoNasc" id="anoNasc">
 
-<label for="especializacao">Especialização: </label>
-<input type="text" name="especializacao" id="especializacao">
-
-<label for="senha">Senha: </label>
-<input type="password" name="senha" id="senha">
-
-<label for="confirmacao">Confirme Sua Senha: </label>
-<input type="password" name="confirmacao" id="confirmacao">
-
-<input type="submit" value="Registrar">
+<input type="submit" value="Cadastrar">
 
 </form>

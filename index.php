@@ -12,12 +12,18 @@ use CoffeeCode\Router\Router;
 $router = new Router(site());
 $router->namespace("Source\App\Controllers");
 
+/* WEB --------------------------------------------- */
+
 /**
  * WEB
  * home
  */
 $router->group(null);
 $router->get("/", "Web:home", "web.home");
+$router->get("/user", "Web:user", "web.user");
+$router->get("/profissional", "Web:profissional", "web.profissional");
+$router->get("/adm", "Web:adm", "web.adm");
+//$router->get("/add/{email}/{senha}", "Web:add", "web.add");
 
 /**
  * WEB
@@ -27,16 +33,46 @@ $router->get("/", "Web:home", "web.home");
 $router->group("teste");
 $router->get("/", "Web:teste", "web.teste");
 
-/**
- * Auth
- */
-$router->group("auth");
-$router->post("/register", "Auth:register", "auth.register");
-$router->post("/login", "Auth:login", "auth.login");
-$router->get("/logout", "Auth:logout", "auth.logout");
+/* AUTH --------------------------------------------- */
+
+
 
 /**
- * App
+ * AUTH
+ * user
+ */
+$router->group("auth/user");
+$router->post("/register", "Auth:userRegister", "auth.userRegister");
+$router->post("/login", "Auth:userLogin", "auth.userLogin");
+$router->get("/logout", "Auth:userLogout", "auth.userLogout");
+
+/**
+ * AUTH
+ * profissional
+ */
+$router->group("auth/profissional");
+$router->post("/register", "Auth:profissionalRegister", "auth.profissionalRegister");
+$router->post("/login", "Auth:profissionalLogin", "auth.profissionalLogin");
+$router->get("/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
+
+/**
+ * AUTH
+ * paciente
+ */
+$router->group("auth/paciente");
+$router->post("//register", "Auth:pacienteRegister", "auth.pacienteRegister");
+
+/**
+ * AUTH
+ * adm
+ */
+$router->post("/adm/login", "Auth:admLogin", "auth.admLogin");
+$router->get("/adm/logout", "Auth:admLogout", "auth.admLogout");
+
+/* APP --------------------------------------------- */
+
+/**
+ * APP
  * Home
  */
 $router->group("pacientes");
@@ -47,12 +83,35 @@ $router->post("/evolucao/{id}", "App:evolucao", "app.evolucao");
 $router->post("/sinais-vitais/{id}", "App:sinaisVitais", "app.sinaisVitais");
 $router->post("/anamnese/{id}", "App:anamnese", "app.anamnese");
 
-/**Adm
- * Register
+
+/* USER --------------------------------------------- */
+
+/**
+ * USER
+ * 
  */
-$router->group("adm");
+$router->group("conslutas");
+$router->get("/", "User:home", "user.home");
+
+// $router->get("/pacientes", "Adm:paciente", "adm.paciente");
+
+// $router->get("/profissionais", "Adm:profissional", "adm.profissional");
+
+// $router->get("/consultas", "Adm:consultas", "adm.consultas");
+// $router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
+
+
+/* ADM --------------------------------------------- */
+
+/**
+ * ADM
+ * Home
+ */
+$router->group("admin");
 $router->get("/", "Adm:home", "adm.home");
-$router->get("/register", "Adm:register", "adm.register");
+$router->get("/cadastro/user", "Adm:user", "adm.user");
+$router->get("/cadastro/profissional", "Adm:profissional", "adm.profissional");
+$router->get("/cadastro/paciente", "Adm:paciente", "adm.paciente");
 
 /**
  * WEB

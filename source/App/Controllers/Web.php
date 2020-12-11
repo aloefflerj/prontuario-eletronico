@@ -4,8 +4,8 @@ namespace Source\App\Controllers;
 
 use Core\Controller;
 use Source\App\Models\Pacientes;
-use Source\App\Models\Pessoas;
 use Source\App\Models\Profissionais;
+use Source\App\Models\Adm;
 
 class Web extends Controller
 {
@@ -17,6 +17,7 @@ class Web extends Controller
         $this->pacientes = new Pacientes();
         /**@var Profissionais */
         $this->profissionais = new Profissionais();
+        $this->adm = new Adm();
 
         if(!empty($_SESSION["profissional"])){
             $this->router->redirect("app.home");
@@ -28,13 +29,37 @@ class Web extends Controller
         echo $this->view->render("web/home");
     }
 
+    public function profissional(): void
+    {
+        echo $this->view->render("web/profissional");
+    }
+
+    public function user(): void
+    {
+        echo $this->view->render("web/user");
+    }
+
+    public function adm(): void
+    {
+        echo $this->view->render("web/adm");
+    }
+
+    // public function add($data): void
+    // {
+    //     $senha = filter_var($data["senha"], FILTER_DEFAULT);
+    //     $senha = password_hash($senha, PASSWORD_DEFAULT);
+
+    //     $this->adm->email = $data["email"];
+    //     $this->adm->senha = $senha;
+    //     $this->adm->save();
+    // }
+
     /**
      * Teste
      */
     public function teste(): void
     {
-        //echo $this->view->render("web/teste");
-        echo "<pre>" , var_dump($this->profissionais->find()->fetch(true)), "</pre>";
+        var_dump("oi");
     }
 
     /**

@@ -9,6 +9,7 @@ use Source\App\Models\Medicamentos;
 use Source\App\Models\Pacientes;
 use Source\App\Models\Profissionais;
 use Source\App\Models\SinaisVitais;
+use Source\App\Models\Users;
 
 class App extends Controller
 {
@@ -19,6 +20,8 @@ class App extends Controller
         $this->pacientes = new Pacientes();
         /**@var Profissionais */
         $this->profissionais = new Profissionais();
+        /**@var Users */
+        $this->users = new Users();
         /**@var Medicamentos */
         $this->medicamentos = new Medicamentos();
         /**@var Evolucao */
