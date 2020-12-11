@@ -13,67 +13,20 @@ class Pacientes extends DataLayer
             "cpf", 
             "telefone", 
             "endereco", 
-            "anoNasc", 
-            "idEvolucao", 
-            "idAnamnese", 
-            "idMedicamentos", 
-            "idProfissional", 
-            "idSinaisVitais"
+            "anoNasc"
         ]);
     }
 
-    public function add(
-        String $nome,
-        $cpf,
-        $telefone,
-        $endereco,
-        $anoNasc,
-        $idEvolucao,
-        $idAnamnese,
-        $idMedicamentos,
-        $idProfissional,
-        $idSinaisVitais
-    ): Pacientes {
-        $this->nome = $nome;
-        $this->cpf = $cpf;
-        $this->telefone    = $telefone;
-        $this->endereco    = $endereco;
-        $this->anoNasc    = $anoNasc;
-        $this->idEvolucao    = $idEvolucao;
-        $this->idAnamnese    = $idAnamnese;
-        $this->idMedicamentos    = $idMedicamentos;
-        $this->idProfissional    = $idProfissional;
-        $this->idSinaisVitais    = $idSinaisVitais;
-
-
-
+    public function register($nome, $cpf, $telefone, $endereco, $anoNasc): Pacientes
+    {
+        $this->nome             = $nome;
+        $this->cpf              = $cpf;
+        $this->telefone         = $telefone;
+        $this->endereco         = $endereco;
+        $this->anoNasc          = $anoNasc;
 
         $this->save();
 
         return $this;
-    }
-
-    public function findBy(string $param, string $value = null)
-    {
-        $return = $this->find("{$param} = :ccode", "ccode={$value}")->fetch();
-        if ($return)
-        {
-            return $return;
-        }else{
-            return $this;
-        }
-        
-    }
-
-    public function filterBy(string $param, string $value = null)
-    {
-        $return = $this->find("{$param} = :ccode", "ccode={$value}")->fetch(true);
-        if ($return)
-        {
-            return $return;
-        }else{
-            return $this;
-        }
-        
     }
 }

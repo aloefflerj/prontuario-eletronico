@@ -35,14 +35,32 @@ $router->get("/", "Web:teste", "web.teste");
 
 /* AUTH --------------------------------------------- */
 
+
+
+/**
+ * AUTH
+ * user
+ */
+$router->group("auth/user");
+$router->post("/register", "Auth:userRegister", "auth.userRegister");
+$router->post("/login", "Auth:userLogin", "auth.userLogin");
+$router->get("/logout", "Auth:userLogout", "auth.userLogout");
+
 /**
  * AUTH
  * profissional
  */
-$router->group("auth");
-$router->post("/profissional/register", "Auth:profissionalRegister", "auth.profissionalRegister");
-$router->post("/profissional/login", "Auth:profissionalLogin", "auth.profissionalLogin");
-$router->get("/profissional/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
+$router->group("auth/profissional");
+$router->post("/register", "Auth:profissionalRegister", "auth.profissionalRegister");
+$router->post("/login", "Auth:profissionalLogin", "auth.profissionalLogin");
+$router->get("/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
+
+/**
+ * AUTH
+ * paciente
+ */
+$router->group("auth/paciente");
+$router->post("//register", "Auth:pacienteRegister", "auth.pacienteRegister");
 
 /**
  * AUTH
@@ -72,14 +90,15 @@ $router->post("/anamnese/{id}", "App:anamnese", "app.anamnese");
  * USER
  * 
  */
-$router->group("user");
+$router->group("conslutas");
+$router->get("/", "User:home", "user.home");
 
-$router->get("/pacientes", "Adm:paciente", "adm.paciente");
+// $router->get("/pacientes", "Adm:paciente", "adm.paciente");
 
-$router->get("/profissionais", "Adm:profissional", "adm.profissional");
+// $router->get("/profissionais", "Adm:profissional", "adm.profissional");
 
-$router->get("/consultas", "Adm:consultas", "adm.consultas");
-$router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
+// $router->get("/consultas", "Adm:consultas", "adm.consultas");
+// $router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
 
 
 /* ADM --------------------------------------------- */

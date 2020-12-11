@@ -2,10 +2,10 @@
 
 <h2>Login Usuário</h2>
 
-<form action="<?= $router->route("auth.login"); ?>" method="post">
+<form action="<?= $router->route("auth.userLogin"); ?>" method="post">
 
-    <label for="cpf">Login: </label>
-    <input type="text" name="cpf" id="cpf">
+    <label for="email">Login: </label>
+    <input type="text" name="email" id="email">
 
     <label for="senha">Senha: </label>
     <input type="password" name="senha" id="senha">

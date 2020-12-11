@@ -15,7 +15,7 @@ class Adm extends Controller
         {
             unset($_SESSION["adm"]);
             echo ("Acesso negado. Favor fazer login.");
-            $this->router->redirect("web.home");
+            $this->router->redirect("web.adm");
         }
     }
 
@@ -32,6 +32,11 @@ class Adm extends Controller
     public function profissional(): void
     {
         echo $this->view->render("adm/profissional");
+    }
+
+    public function paciente(): void
+    {
+        echo $this->view->render("adm/paciente");
     }
 
 }
