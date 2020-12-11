@@ -3,7 +3,9 @@
 namespace Source\App\Controllers;
 
 use Core\Controller;
+use Source\App\Models\Consultas;
 use Source\App\Models\Pacientes;
+use Source\App\Models\Profissionais;
 use Source\App\Models\Users;
 
 class User extends Controller
@@ -15,6 +17,10 @@ class User extends Controller
         $this->users = new Users();
         /**@var Pacientes */
         $this->pacientes = new Pacientes();
+        /**@var Profissionais */
+        $this->profissionais = new Profissionais();
+        /**@var Consultas */
+        $this->consultas = new Consultas();
 
         if(empty($_SESSION["user"]) || !$this->users = (new Users)->findById($_SESSION["user"]))
         {
