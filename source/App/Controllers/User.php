@@ -64,4 +64,20 @@ class User extends Controller
     {
         echo $this->view->render("user/cadastro");
     }
+
+    //Procura paciente
+    public function procura($data): void
+    {
+        //Filtragem de segurança
+        $nome = filter_var($data["nome"], FILTER_SANITIZE_STRIPPED);
+        $cpf = filter_var($data["cpf"], FILTER_SANITIZE_STRIPPED);
+        //Procura paciente por nome ou cpf
+        $paciente = $this->pacientes->findBy("nome", $nome);
+        if(!empty($cpf) && empty($nome)){
+            $paciente = $this->pacientes->findBy("cpf", $cpf);
+        }
+        
+
+        echo $this->view->render("user/fragments/resultado", ["paciente" => $paciente]);
+    }
 }
