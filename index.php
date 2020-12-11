@@ -60,7 +60,7 @@ $router->get("/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
  * paciente
  */
 $router->group("auth/paciente");
-$router->post("//register", "Auth:pacienteRegister", "auth.pacienteRegister");
+$router->post("/register", "Auth:pacienteRegister", "auth.pacienteRegister");
 
 /**
  * AUTH
@@ -92,14 +92,10 @@ $router->post("/anamnese/{id}", "App:anamnese", "app.anamnese");
  */
 $router->group("conslutas");
 $router->get("/", "User:home", "user.home");
-
-// $router->get("/pacientes", "Adm:paciente", "adm.paciente");
-
-// $router->get("/profissionais", "Adm:profissional", "adm.profissional");
-
-// $router->get("/consultas", "Adm:consultas", "adm.consultas");
-// $router->post("/consulta/novo", "Adm:novaConsulta", "adm.novaConsulta");
-
+$router->get("/consultas", "User:consultas", "user.consultas");
+$router->get("consulta/nova", "User:novaConsulta", "user.novaConsulta");
+$router->get("/paciente", "User:paciente", "user.paciente");
+$router->get("/paciente/novo", "User:cadastro", "user.cadastro");
 
 /* ADM --------------------------------------------- */
 

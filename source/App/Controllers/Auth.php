@@ -221,7 +221,14 @@ class Auth extends Controller
             $data["endereco"],
             $data["anoNasc"]
         );
-        $this->router->redirect("web.home");
+
+        if(!empty($_SESSION["adm"])){
+            $this->router->redirect("adm.home");
+        }else if(!empty($_SESSION["user"])){
+            $this->router->redirect("user.home");
+        }
+
+        $this->router->redirect("web.home");  
         
     }
 
