@@ -39,8 +39,15 @@ class User extends Controller
 
     public function consultas(): void
     {
-        $pacientes = $this->pacientes->find()->fetch(true);
-        echo $this->view->render("user/consultas", ["pacientes" => $pacientes]);
+        $consultas      = $this->consultas->find()->order("dataConsulta DESC")->fetch(true);
+        $profissionais  = $this->profissionais->find()->fetch(true);
+        $pacientes      = $this->pacientes->find()->fetch(true);
+        
+        echo $this->view->render("user/consultas", [
+            "consultas"     => $consultas,
+            "pacientes"     => $pacientes,
+            "profissionais" => $profissionais
+            ]);
     }
 
     public function novaConsulta(): void
