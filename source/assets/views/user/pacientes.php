@@ -10,7 +10,7 @@
 
 <input type="button" value="Pesquisar" data-search="<?= $router->route("user.procura"); ?>">
 
-<div id="resultado">
+<div id="resultado" style="border: 1px solid #555;">
 
 </div>
 <?php $v->start("scripts"); ?>
