@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Dez-2020 às 21:52
+-- Tempo de geração: 12-Dez-2020 às 18:53
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -71,18 +71,26 @@ INSERT INTO `anamnese` (`id`, `idPaciente`, `qp`, `hda`, `antecedentesPessoais`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `consulta`
+-- Estrutura da tabela `consultas`
 --
 
-CREATE TABLE `consulta` (
+CREATE TABLE `consultas` (
   `id` int(11) NOT NULL,
   `idPaciente` int(11) NOT NULL,
   `idProfissional` int(11) NOT NULL,
-  `data` datetime NOT NULL,
+  `dataConsulta` datetime NOT NULL,
   `finalizada` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `consultas`
+--
+
+INSERT INTO `consultas` (`id`, `idPaciente`, `idProfissional`, `dataConsulta`, `finalizada`, `created_at`, `updated_at`) VALUES
+(1, 3, 10, '2020-12-16 06:24:24', 0, '2020-12-11 21:14:14', '2020-12-11 21:14:14'),
+(2, 6, 17, '2020-12-24 09:26:28', 0, '2020-12-11 21:43:33', '2020-12-11 21:43:33');
 
 -- --------------------------------------------------------
 
@@ -256,9 +264,9 @@ INSERT INTO `users` (`id`, `email`, `senha`, `created_at`, `updated_at`) VALUES
 --
 
 --
--- Índices para tabela `consulta`
+-- Índices para tabela `consultas`
 --
-ALTER TABLE `consulta`
+ALTER TABLE `consultas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -302,10 +310,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de tabela `consulta`
+-- AUTO_INCREMENT de tabela `consultas`
 --
-ALTER TABLE `consulta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `consultas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `evolucao`
