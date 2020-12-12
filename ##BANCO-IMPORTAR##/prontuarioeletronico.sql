@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Dez-2020 às 21:52
+-- Tempo de geração: 12-Dez-2020 às 18:53
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -71,18 +71,26 @@ INSERT INTO `anamnese` (`id`, `idPaciente`, `qp`, `hda`, `antecedentesPessoais`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `consulta`
+-- Estrutura da tabela `consultas`
 --
 
-CREATE TABLE `consulta` (
+CREATE TABLE `consultas` (
   `id` int(11) NOT NULL,
   `idPaciente` int(11) NOT NULL,
   `idProfissional` int(11) NOT NULL,
-  `data` datetime NOT NULL,
+  `dataConsulta` datetime NOT NULL,
   `finalizada` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `consultas`
+--
+
+INSERT INTO `consultas` (`id`, `idPaciente`, `idProfissional`, `dataConsulta`, `finalizada`, `created_at`, `updated_at`) VALUES
+(1, 3, 10, '2020-12-16 06:24:24', 0, '2020-12-11 21:14:14', '2020-12-11 21:14:14'),
+(2, 6, 17, '2020-12-24 09:26:28', 0, '2020-12-11 21:43:33', '2020-12-11 21:43:33');
 
 -- --------------------------------------------------------
 
@@ -195,11 +203,12 @@ CREATE TABLE `profissionais` (
 --
 
 INSERT INTO `profissionais` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNasc`, `especializacao`, `senha`, `created_at`, `updated_at`) VALUES
+(1, 'Frankeinstein', '1234', '123', 'asd', '32131', 'Psicólogo', '$2y$10$0f1FhMPEPNiu8bXrSWMzI.RJSS1f7VgkcvtoDf3eAiEPUyG4KJaNu', '2020-12-07 09:41:37', '2020-12-07 09:41:37'),
 (8, 'Matcha', '11111111111', '99999999999', 'Av Assis Brasil, 123456', '2018', 'Ortopedista', '$2y$10$4ZMiPhf8Mv0ROYi1vtZiee5k7TubhfJ8j2d..igelQP', '2020-12-07 07:45:45', '2020-12-07 07:45:45'),
 (10, 'Áuzio', '8888888888', '(51) 99999-', 'Av Sertório', '1810', 'Oncologista', '$2y$10$WfDwIfrT5RmZVFisvPOvNORnO9GVlQnHqZw.j5le4fy', '2020-12-07 08:33:34', '2020-12-07 08:33:34'),
 (12, 'Anderson', '12345678910', '(51) 99999-', 'av tal de tal, 666', '1994', 'Oncologista', '$2y$10$nDS923T4VCybjuaLcK1PpOd4fLcDO3S3PQenmajKg7tYAUjIJGOWS', '2020-12-07 08:50:58', '2020-12-07 08:50:58'),
 (13, 'Susan', '98765432110', '(51) 99999-', 'Av Sertório', '1994', 'Dermatologista', '$2y$10$kFsGLczNYvPdprkKwiyWi.bwOBbqj4pMg2qVZYWR325GVewdCfrXO', '2020-12-07 09:36:02', '2020-12-07 09:36:02'),
-(15, 'Frankeinstein', '123', '123', 'asd', '32131', 'Psicólogo', '$2y$10$0f1FhMPEPNiu8bXrSWMzI.RJSS1f7VgkcvtoDf3eAiEPUyG4KJaNu', '2020-12-07 09:41:37', '2020-12-07 09:41:37'),
+(15, 'Áuzio', '123', '3213213213', 'Rua 7', '1975', 'Oncologista', '$2y$10$9ncSRbHnTTmdRXxrgEze5.wWLB6j4hRc35eSjBUisVU5MHSr4QqBi', '2020-12-12 21:51:54', '2020-12-12 21:51:54'),
 (16, 'Mário', '222', '98764321', 'Av. Ceará', '1980', 'Odontologia', '$2y$10$J6NDQE9A6PD2QJnQbThUe.pxPDwqDME/nYHmhxE7izdoV9hi2VI/q', '2020-12-11 02:46:00', '2020-12-11 02:46:00'),
 (17, 'Pablo', '9999999999', '99999999999', 'Av 21213121', '1998', 'Gastro', '$2y$10$UovZlj.mdE.4Ja/KAyweeey7RWVwG3uNPOKPKEIWfon7ebrEHL7jC', '2020-12-11 04:13:47', '2020-12-11 04:13:47');
 
@@ -255,9 +264,9 @@ INSERT INTO `users` (`id`, `email`, `senha`, `created_at`, `updated_at`) VALUES
 --
 
 --
--- Índices para tabela `consulta`
+-- Índices para tabela `consultas`
 --
-ALTER TABLE `consulta`
+ALTER TABLE `consultas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -301,10 +310,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de tabela `consulta`
+-- AUTO_INCREMENT de tabela `consultas`
 --
-ALTER TABLE `consulta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `consultas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `evolucao`
@@ -328,7 +337,7 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de tabela `profissionais`
 --
 ALTER TABLE `profissionais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `sinaisvitais`
