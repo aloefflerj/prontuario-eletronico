@@ -94,8 +94,9 @@ $router->group("conslutas");
 $router->get("/", "User:home", "user.home");
 $router->get("/consultas", "User:consultas", "user.consultas");
 $router->get("consulta/nova", "User:novaConsulta", "user.novaConsulta");
-$router->get("/paciente", "User:paciente", "user.paciente");
+$router->get("/paciente", "User:pacientes", "user.pacientes");
 $router->get("/paciente/novo", "User:cadastro", "user.cadastro");
+$router->post("/paciente/procura", "User:procura", "user.procura"); 
 
 /* ADM --------------------------------------------- */
 
