@@ -45,6 +45,7 @@ $router->group("auth/user");
 $router->post("/register", "Auth:userRegister", "auth.userRegister");
 $router->post("/login", "Auth:userLogin", "auth.userLogin");
 $router->get("/logout", "Auth:userLogout", "auth.userLogout");
+$router->post("/novaConsulta", "Auth:novaConsulta", "auth.novaConsulta");
 
 /**
  * AUTH

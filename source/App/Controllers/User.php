@@ -52,7 +52,13 @@ class User extends Controller
 
     public function novaConsulta(): void
     {
-        echo $this->view->render("user/novaConsulta");
+        //Busca os pacientes e profissionais no banco
+        $pacientes      = $this->pacientes->find()->fetch(true);
+        $profissionais  = $this->profissionais->find()->fetch(true);
+        echo $this->view->render("user/novaConsulta", [
+            "pacientes"     => $pacientes,
+            "profissionais" => $profissionais
+        ]);
     }
 
     public function pacientes(): void
