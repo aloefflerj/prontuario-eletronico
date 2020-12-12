@@ -33,13 +33,22 @@ class User extends Controller
     
     public function home(): void
     {
+        $consultas      = $this->consultas->find()->order("dataConsulta ASC")->fetch(true);
+        $profissionais  = $this->profissionais->find()->fetch(true);
+        $pacientes      = $this->pacientes->find()->fetch(true);
+        
         $user = $this->users->findById($_SESSION["user"]);
-        echo $this->view->render("user/home", ["user" => $user]);
+        echo $this->view->render("user/home", [
+            "user"      => $user,
+            "consultas" => $consultas,
+            "pacientes"     => $pacientes,
+            "profissionais" => $profissionais
+            ]);
     }
 
     public function consultas(): void
     {
-        $consultas      = $this->consultas->find()->order("dataConsulta DESC")->fetch(true);
+        $consultas      = $this->consultas->find()->order("dataConsulta ASC")->fetch(true);
         $profissionais  = $this->profissionais->find()->fetch(true);
         $pacientes      = $this->pacientes->find()->fetch(true);
         
