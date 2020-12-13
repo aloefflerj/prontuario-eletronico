@@ -4,6 +4,7 @@ namespace Source\App\Controllers;
 
 use Core\Controller;
 use Source\App\Models\Anamnese;
+use Source\App\Models\Consultas;
 use Source\App\Models\Evolucao;
 use Source\App\Models\Medicamentos;
 use Source\App\Models\Pacientes;
@@ -30,6 +31,8 @@ class App extends Controller
         $this->sinaisVitais = new SinaisVitais();
         /**@var Anamnese */
         $this->anamnese = new Anamnese();
+        /**@var Consultas */
+        $this->consultas = new Consultas();
 
         if(empty($_SESSION["profissional"]) || !$this->profissionais = (new Profissionais)->findById($_SESSION["profissional"]))
         {
@@ -70,6 +73,68 @@ class App extends Controller
             ]);
     }
 
+    public function atendimento($data): void
+    {
+        //Procura e seleciona o paciente
+        $paciente = $this->pacientes->findById($data["id"]);
+        //Valida se pertence ao devido profissional
+        if($paciente->idProfissional != $_SESSION["profissional"]){
+            $this->router->redirect("app.home");
+        }
+        echo $this->view->render("app/atendimento", [
+            "paciente" =>$paciente
+        ]);
+    }
+
+    public function concluir($data): void
+    {
+        /*Filtragem de segurança-----------------------------*/
+        $idPaciente = filter_var($data["idPaciente"], FILTER_SANITIZE_NUMBER_INT);
+        //Medicamentos
+        $nome       = filter_var($data["nome"], FILTER_SANITIZE_STRIPPED);
+        $periodo    = filter_var($data["periodo"], FILTER_SANITIZE_STRIPPED);
+        $horario    = filter_var($data["horario"], FILTER_SANITIZE_STRIPPED);
+        $via        = filter_var($data["via"], FILTER_SANITIZE_STRIPPED);
+        //Evolução
+        $situacao   = filter_var($data["situacao"], FILTER_SANITIZE_STRIPPED);
+        $observacoes= filter_var($data["periodo"], FILTER_SANITIZE_STRIPPED);
+        //Sinais Vitais
+        $pressao            = filter_var($data["pressao"], FILTER_SANITIZE_STRIPPED);
+        $batimentos         = filter_var($data["batimentos"], FILTER_SANITIZE_STRIPPED);
+        $saturacaoOxigenio  = filter_var($data["saturacaoOxigenio"], FILTER_SANITIZE_STRIPPED);
+        $nivelDioxidoCarbono= filter_var($data["nivelDioxidoCarbono"], FILTER_SANITIZE_STRIPPED);
+        $temperatura        = filter_var($data["temperatura"], FILTER_SANITIZE_STRIPPED);
+        //Anamnese
+        $qp                     = filter_var($data["qp"], FILTER_SANITIZE_STRIPPED);
+        $hda                    = filter_var($data["hda"], FILTER_SANITIZE_STRIPPED);
+        $antecedentesPessoais   = filter_var($data["antecedentesPessoais"], FILTER_SANITIZE_STRIPPED);
+        $antecedentesFamiliares = filter_var($data["antecedentesFamiliares"], FILTER_SANITIZE_STRIPPED);
+        $habitos                = filter_var($data["habitos"], FILTER_SANITIZE_STRIPPED);
+        $revisaoSistemas        = filter_var($data["revisaoSistemas"], FILTER_SANITIZE_STRIPPED);
+        //*Valida se algum campo está vazio-----------------------------*/
+        if(in_array("", $data)){
+            echo $this->ajaxMessage("Verifique se nenhum dos campos está vazio", "error");
+            return;
+        }
+        //Busca o modelo do paciente para poder atualizá-lo
+        //$paciente = $this->pacientes->findById($idPaciente);
+        
+        //Salvando nos devidos bancos
+        $this->medicamentos->register($idPaciente, $nome, $periodo, $horario, $via);
+        $this->evolucao->register($idPaciente, $situacao, $observacoes);
+        $this->sinaisVitais->register($idPaciente, $pressao, $batimentos, $saturacaoOxigenio, $nivelDioxidoCarbono, $temperatura);
+        $this->anamnese->register($idPaciente, $qp, $hda, $antecedentesPessoais, $antecedentesFamiliares, $habitos, $revisaoSistemas);
+
+        //Marcando consulta como atendida
+        $consulta = $this->consultas->findBy("idPaciente", $idPaciente);
+        $consulta->finalizada = "s";
+        $consulta->save();
+
+        $this->router->redirect("app.home");
+
+    }
+
+    //AJAX CALLS
     public function medicamentos($data): void
     {
         //Procura os medicamentos do paciente

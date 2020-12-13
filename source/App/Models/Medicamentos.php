@@ -16,4 +16,17 @@ class Medicamentos extends DataLayer
             "via"
             ]);
     }
+
+    public function register($idPaciente, $nome, $periodo, $horario, $via): Medicamentos
+        {
+            $this->idPaciente   = $idPaciente;
+            $this->nome         = $nome;
+            $this->periodo      = $periodo;
+            $this->horario      = $horario;
+            $this->via          = $via;
+
+            $this->save();
+
+            return $this;
+        }
 }

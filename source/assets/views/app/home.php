@@ -42,7 +42,9 @@
                                     <button type="button" 
                                             onclick="location.href='<?= $router->route('app.detalhes', ['id' => $paciente->id]);?>'" 
                                             class="btn btn-light">Visualizar</button>
-                                    <button type="button" class="btn btn-light">Modificar</button>
+                                    <button type="button"
+                                            onclick="location.href='<?= $router->route('app.atendimento', ['id' => $paciente->id]);?>'" 
+                                            class="btn btn-light">Atender</button>
                                     <button type="button" class="btn btn-light">Deletar</button>
                                 </td>
                             </tr>
