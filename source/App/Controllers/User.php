@@ -106,10 +106,12 @@ class User extends Controller
         $idPaciente     = filter_var($data["idPaciente"], FILTER_VALIDATE_INT);
         $idProfissional = filter_var($data["idProfissional"], FILTER_VALIDATE_INT);
         $dataConsulta   = filter_var($data["dataConsulta"], FILTER_SANITIZE_STRIPPED);
-        //Procura paciente por nome ou cpf
+        //Procura paciente por paciente, profissional ou data
         if(!empty($idPaciente)){
+            //Pesquisa de consulta através do paciente
             $consultas = $this->consultas->filterBy("idPaciente", $idPaciente);
         }elseif(!empty($idProfissional)){
+            //Pesquisa de consulta através do profissional
             $consultas = $this->consultas->filterBy("idProfissional", $idProfissional);
         }elseif(!empty($dataConsulta)){
             //Formata a datetime para somente o dia atual
@@ -119,12 +121,15 @@ class User extends Controller
         }else{
             $consultas = null;
         }
-        
-        // echo "<pre>", var_dump($consultas), "</pre>";
-        // return;
+        //Pega dados de Paciente
+        $pacientes = $this->pacientes->find()->fetch(true);
+        //Pega dados de Profissional
+        $profissionais = $this->profissionais->find()->fetch(true);
 
         echo $this->view->render("user/fragments/resultadoConsultas", [
-            "consultas" => $consultas
+            "pacientes"     => $pacientes,
+            "profissionais" => $profissionais,
+            "consultas"     => $consultas
             ]);
     }
 }

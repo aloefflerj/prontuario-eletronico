@@ -261,4 +261,9 @@ class Auth extends Controller
         $this->router->redirect("user.novaConsulta");
     }
 
+    public function deletarConsulta($data): void
+    {
+        # code...
+    }
+
 }
