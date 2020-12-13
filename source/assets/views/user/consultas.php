@@ -31,7 +31,7 @@
     </select>
     <?php //SELECIONA DATA ?>
     <label for="dataConsulta">Pesquisa por Data: </label>
-    <input type="datetime-local" name="dataConsulta" id="dataConsulta">
+    <input type="date" name="dataConsulta" id="dataConsulta">
 
     <input type="submit" value="Pesquisar Consulta" data-search="<?= $router->route("user.procuraConsulta"); ?>">
 
@@ -99,6 +99,10 @@
                 }
             });
 
+            $("#idPaciente").val(null);
+            $("#idProfissional").val(null);
+            $("#dataConsulta").val(null);
+
         });
 
         function pesquisar(data, idPaciente, idProfissional, dataConsulta){
@@ -109,6 +113,9 @@
         }
 
         //Limpa os campos
+
+
+
         $("#idPaciente").focus(function(){
             $("#idProfissional").val(null);
             $("#dataConsulta").val(null);

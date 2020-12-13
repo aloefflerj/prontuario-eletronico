@@ -2,7 +2,9 @@
 
 namespace Source\App\Controllers;
 
+use CoffeeCode\DataLayer\Connect;
 use Core\Controller;
+use DateTime;
 use Source\App\Models\Consultas;
 use Source\App\Models\Pacientes;
 use Source\App\Models\Profissionais;
@@ -12,7 +14,8 @@ class User extends Controller
 {
     public function __construct($router) {
         parent::__construct($router);
-
+        /**@var Connect */
+        $this->connect = Connect::getInstance();
         /**@var Users */
         $this->users = new Users();
         /**@var Pacientes */
@@ -104,12 +107,15 @@ class User extends Controller
         $idProfissional = filter_var($data["idProfissional"], FILTER_VALIDATE_INT);
         $dataConsulta   = filter_var($data["dataConsulta"], FILTER_SANITIZE_STRIPPED);
         //Procura paciente por nome ou cpf
-        if(!empty($idPaciente) && empty($idProfissional) && empty($dataConsulta)){
+        if(!empty($idPaciente)){
             $consultas = $this->consultas->filterBy("idPaciente", $idPaciente);
-        }elseif(!empty($idProfissional)&& empty($idPaciente) && empty($dataConsulta)){
+        }elseif(!empty($idProfissional)){
             $consultas = $this->consultas->filterBy("idProfissional", $idProfissional);
-        }elseif(!empty($dataConsulta) && empty($idPaciente) && empty($idProfissional)){
-            $consultas = $this->consultas->filterBy("dataConsulta", $dataConsulta);
+        }elseif(!empty($dataConsulta)){
+            //Formata a datetime para somente o dia atual
+            $dataFormatada = (new DateTime($dataConsulta))->format("y-m-d");
+            //Pesquisa o datetime no banco que começa com o dia de hoje
+            $consultas = $this->consultas->find("dataConsulta LIKE '%{$dataFormatada}%'")->fetch(true);
         }else{
             $consultas = null;
         }

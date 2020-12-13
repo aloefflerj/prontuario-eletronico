@@ -301,7 +301,7 @@ abstract class DataLayer
         {
             return $return;
         }else{
-            return $this;
+            return null;
         }
         
     }
@@ -313,8 +313,20 @@ abstract class DataLayer
         {
             return $return;
         }else{
-            return $this;
+            return null;
         }
         
+    }
+
+    public function startsWith(string $column, string $start): ?DataLayer
+    {
+        
+        $return = $this->find("{$column} LIKE '%{$start}%'")->fetch(true);
+        if ($return)
+        {
+            return $return;
+        }else{
+            return null;
+        }
     }
 }
