@@ -26,7 +26,10 @@
             <?php endforeach; ?>
         </p>
         <p>Dia e Hora:      <?= (new DateTime($consulta->dataConsulta))->format("d/m/Y h:m"); ?></p>
-        <a href="">Deletar</a>
+        <form action="<?= $router->route("auth.deletaConsulta"); ?>" method="post">
+                <input type="hidden" name="id" id="id" value="<?= $consulta->id; ?>">
+                <input type="submit" value="Deletar">
+        </form>
     </div>
 <?php
         endforeach;

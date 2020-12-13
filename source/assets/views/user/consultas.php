@@ -71,6 +71,10 @@
                         echo $dataConsulta->format('d/m/y H:i');
                     ?>
                 </p>
+                <form action="<?= $router->route("auth.deletaConsulta"); ?>" method="post">
+                    <input type="hidden" name="id" id="id" value="<?= $consulta->id; ?>">
+                    <input type="submit" value="Deletar">
+                </form>
 <?php
         endforeach;
     endif;

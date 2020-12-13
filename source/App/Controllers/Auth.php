@@ -261,9 +261,11 @@ class Auth extends Controller
         $this->router->redirect("user.novaConsulta");
     }
 
-    public function deletarConsulta($data): void
+    public function deletaConsulta($data): void
     {
-        # code...
+        $consulta = $this->consultas->findById($data["id"]);
+        $consulta->destroy();
+        $this->router->redirect("user.consultas");
     }
 
 }

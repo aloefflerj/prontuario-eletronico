@@ -41,17 +41,24 @@ $router->get("/", "Web:teste", "web.teste");
  * AUTH
  * user
  */
-$router->group("auth/user");
+$router->group("auth-user");
 $router->post("/register", "Auth:userRegister", "auth.userRegister");
 $router->post("/login", "Auth:userLogin", "auth.userLogin");
 $router->get("/logout", "Auth:userLogout", "auth.userLogout");
+
+/**
+ * AUTH
+ * consultas
+ */
 $router->post("/novaConsulta", "Auth:novaConsulta", "auth.novaConsulta");
+$router->post("/deletaConsulta", "Auth:deletaConsulta", "auth.deletaConsulta");
+
 
 /**
  * AUTH
  * profissional
  */
-$router->group("auth/profissional");
+$router->group("auth-profissional");
 $router->post("/register", "Auth:profissionalRegister", "auth.profissionalRegister");
 $router->post("/login", "Auth:profissionalLogin", "auth.profissionalLogin");
 $router->get("/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
@@ -60,7 +67,7 @@ $router->get("/logout", "Auth:profissionalLogout", "auth.profissionalLogout");
  * AUTH
  * paciente
  */
-$router->group("auth/paciente");
+$router->group("auth-paciente");
 $router->post("/register", "Auth:pacienteRegister", "auth.pacienteRegister");
 
 /**
@@ -91,14 +98,18 @@ $router->post("/anamnese/{id}", "App:anamnese", "app.anamnese");
  * USER
  * 
  */
+//Home
 $router->group("home");
 $router->get("/", "User:home", "user.home");
+//Consultas
 $router->get("/consultas", "User:consultas", "user.consultas");
-$router->get("consulta/nova", "User:novaConsulta", "user.novaConsulta");
+$router->get("/nova", "User:novaConsulta", "user.novaConsulta");
+$router->post("/procura", "User:procuraConsulta", "user.procuraConsulta");
+//Pacientes
 $router->get("/paciente", "User:pacientes", "user.pacientes");
 $router->get("/paciente/novo", "User:cadastro", "user.cadastro");
 $router->post("/paciente/procura", "User:procuraPaciente", "user.procuraPaciente"); 
-$router->post("/consulta/procura", "User:procuraConsulta", "user.procuraConsulta");
+
 
 /* ADM --------------------------------------------- */
 
