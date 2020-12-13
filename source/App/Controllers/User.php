@@ -81,7 +81,7 @@ class User extends Controller
     }
 
     //Procura paciente
-    public function procura($data): void
+    public function procuraPaciente($data): void
     {
         //Filtragem de segurança
         $nome = filter_var($data["nome"], FILTER_SANITIZE_STRIPPED);
@@ -94,5 +94,31 @@ class User extends Controller
         
 
         echo $this->view->render("user/fragments/resultado", ["paciente" => $paciente]);
+    }
+
+    //Procura consulta
+    public function procuraConsulta($data): void
+    {
+        //Filtragem de segurança
+        $idPaciente     = filter_var($data["idPaciente"], FILTER_VALIDATE_INT);
+        $idProfissional = filter_var($data["idProfissional"], FILTER_VALIDATE_INT);
+        $dataConsulta   = filter_var($data["dataConsulta"], FILTER_SANITIZE_STRIPPED);
+        //Procura paciente por nome ou cpf
+        if(!empty($idPaciente) && empty($idProfissional) && empty($dataConsulta)){
+            $consultas = $this->consultas->filterBy("idPaciente", $idPaciente);
+        }elseif(!empty($idProfissional)&& empty($idPaciente) && empty($dataConsulta)){
+            $consultas = $this->consultas->filterBy("idProfissional", $idProfissional);
+        }elseif(!empty($dataConsulta) && empty($idPaciente) && empty($idProfissional)){
+            $consultas = $this->consultas->filterBy("dataConsulta", $dataConsulta);
+        }else{
+            $consultas = null;
+        }
+        
+        // echo "<pre>", var_dump($consultas), "</pre>";
+        // return;
+
+        echo $this->view->render("user/fragments/resultadoConsultas", [
+            "consultas" => $consultas
+            ]);
     }
 }
