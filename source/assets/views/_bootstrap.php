@@ -9,7 +9,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
+        html, body, main, #copro{
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #E9ECEF;
+        }
+
+        #corpo{
+            height: 80vh;
+            margin: 0;
+        }
+        footer{
+            height: 15vh;
+        } 
     </style>
+    <?php $v->section("css"); //Injeta o css?>
+
 </head>
 
 <body>
@@ -19,7 +35,7 @@
         echo $v->section("navbar");
     else:?>
         <nav class="navbar navbar-dark bg-dark">
-            <a  class="navbar-brand" 
+            <a  class="navbar-brand"
                 href="
                     <?php 
                         if(!empty($_SESSION["user"])):
@@ -32,15 +48,14 @@
                             echo $router->route("web.home");
                         endif;
                     ?>
-                ">Sistema de Prontuário Eletrônico</a>
-            <form class="form-inline">
-                <!--<span class="nav-link">Sign Out</span>-->
-                
-            </form>
+                "> <img src="source\assets\img\icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy" style="margin-right:10px">Sistema de Prontuário Eletrônico
+            </a>
 
             <?php if(!empty($_SESSION["profissional"]) || !empty($_SESSION["user"]) || !empty($_SESSION["adm"])): ?>
 
-                <a href="<?php 
+                <a 
+                style="text-decoration:none; color:#fff"  
+                href="<?php 
                     if(!empty($_SESSION["profissional"])): 
                         echo $router->route("auth.profissionalLogout");
                     elseif(!empty($_SESSION["user"])):
@@ -50,26 +65,26 @@
                     else:
                         echo $router->route("web.home");
                     endif; 
-                ?>">Logout</a>
+                ?>"><span class="nav-link">Logout</span></a>
                 
             <?php endif; ?>
         </nav>
     <?php
     endif;
     ?>
-
+    
+    
     <!-- Corpo da pagina -->
 
     <main class="main_content">
         <?= $v->section("content");?>
     </main>
+    <img src="" alt="">
 
     
-
+    
+    
     <!-- Jpopper -->
-    <footer class="main_footer">
-    <?= site("name")?> - Todos os direitos reservados
-    </footer>
     <script src="<?= url("/source/assets/js/jquery.js") ?>"></script>
     <script src="<?= js("/jquery.js"); ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
