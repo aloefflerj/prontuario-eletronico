@@ -6,6 +6,7 @@
 
     <?php /**Paciente */ ?>
     <input type="hidden" name="idPaciente" id="idPaciente" value="<?= $paciente->id; ?>">
+    <input type="hidden" name="idConsulta" id="idConsulta" value="<?= $consulta->id; ?>">
 
     <?php /**Anamnese */ ?>
     <h3>Anamnese: </h3>

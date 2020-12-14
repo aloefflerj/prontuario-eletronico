@@ -49,10 +49,10 @@
                                 <td> <?= $consulta->queixa; ?> </td>
                                 <td>
                                     <button type="button" 
-                                            onclick="location.href='<?= $router->route('app.detalhes', ['idPaciente' => $consulta->idPaciente, 'idProfissional' => $consulta->idProfissional]);?>'" 
+                                            onclick="location.href='<?= $router->route('app.detalhes', ['idPaciente' => $consulta->idPaciente, 'idProfissional' => $consulta->idProfissional, 'idConsulta' => $consulta->id]);?>'" 
                                             class="btn btn-light">Visualizar</button>
                                     <button type="button"
-                                            onclick="location.href='<?= $router->route('app.atendimento', ['idPaciente' => $consulta->idPaciente, 'idProfissional' => $consulta->idProfissional]);?>'" 
+                                            onclick="location.href='<?= $router->route('app.atendimento', ['idPaciente' => $consulta->idPaciente, 'idProfissional' => $consulta->idProfissional, 'idConsulta' => $consulta->id]);?>'" 
                                             class="btn btn-light">Atender</button>
                                     <button type="button" class="btn btn-light">Deletar</button>
                                 </td>
