@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Dez-2020 às 04:23
+-- Tempo de geração: 14-Dez-2020 às 22:02
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.4.11
 
@@ -40,7 +40,7 @@ CREATE TABLE `adm` (
 --
 
 INSERT INTO `adm` (`id`, `email`, `senha`, `created_at`, `updated_at`) VALUES
-(2, 'and@email.com', '$2y$10$DwLIHWSrhU0H9rpys/IOBOBVUVMpUSdte5F/IRCj44bj92WegZVM.', '2020-12-10 22:34:04', '2020-12-10 22:34:04');
+(3, 'adm@email.com', '$2y$10$UarE2F3sBBPswH4dSSEzcufeoeeWsqBZCOQ7OvuxPbB2efc4/qroq', '2020-12-15 00:19:53', '2020-12-15 00:19:53');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,15 @@ CREATE TABLE `anamnese` (
 --
 
 INSERT INTO `anamnese` (`id`, `idPaciente`, `qp`, `hda`, `antecedentesPessoais`, `antecedentesFamiliares`, `habitos`, `revisaoSistemas`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Enxaqueca constante.', 'Já teve sarampo.', 'Crescimento atrasado; parto normal...', 'Doença hereditária na família.', 'Fumar, jogar bola.', 'Cansaço na cabeça do dia a dia.', '2020-12-10 15:43:19', '2020-12-10 15:43:19');
+(1, 3, 'Enxaqueca constante.', 'Já teve sarampo.', 'Crescimento atrasado; parto normal...', 'Doença hereditária na família.', 'Fumar, jogar bola.', 'Cansaço na cabeça do dia a dia.', '2020-12-10 15:43:19', '2020-12-10 15:43:19'),
+(8, 12, 'Prurido', 'Alergia', 'Alergia a Camarão', 'Enfarte do miocárido da mãe', 'Saudáveis', 'Sem alterações', '2020-12-14 03:15:19', '2020-12-14 01:45:44'),
+(9, 12, 'Dor na região Lombar', 'Dor, hematúria', 'Pneumonia, levou um tiro', 'Cancer', 'Chera cocaína', 'Visão turva', '2020-12-14 05:59:39', '2020-12-14 05:59:39'),
+(10, 14, 'Dor de cabeça', 'Sem histórico', 'Bronquite', 'Cancer', 'Bebe', 'Audição levemente afetada', '2020-12-14 07:36:03', '2020-12-14 07:36:03'),
+(11, 15, 'Dor de cabeça', 'Dor, hematúria', 'Bronquite', 'Cancer', 'Fuma', 'Audição Precária', '2020-12-15 00:43:40', '2020-12-15 00:43:40'),
+(12, 16, 'Dor na região Lombar', 'Dor, hematúria', 'Alergia a Camarão', 'Enfarte do miocárido da mãe', 'Bebe', 'Visão turva', '2020-12-15 00:51:32', '2020-12-15 00:51:32'),
+(13, 16, 'Dor na região Lombar', 'Dor, hematúria', 'Alergia a Camarão', 'Enfarte do miocárido da mãe', 'Bebe', 'Visão turva', '2020-12-15 00:53:14', '2020-12-15 00:53:14'),
+(14, 18, 'Acidente ', 'Já quebrou o mesmo braço antes', 'Sem', 'Diabetes', 'Beber, fumar', 'Sem alterações', '2020-12-15 00:56:26', '2020-12-15 00:56:26'),
+(15, 18, 'Dor no braço', 'Quebrou o braço recentemente', 'Quebrou o braço', 'Diabetes', 'Beber, fumar', 'Visão turva', '2020-12-15 01:00:52', '2020-12-15 01:00:52');
 
 -- --------------------------------------------------------
 
@@ -78,6 +86,7 @@ CREATE TABLE `consultas` (
   `id` int(11) NOT NULL,
   `idPaciente` int(11) NOT NULL,
   `idProfissional` int(11) NOT NULL,
+  `queixa` varchar(200) NOT NULL,
   `dataConsulta` datetime NOT NULL,
   `finalizada` varchar(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -88,11 +97,16 @@ CREATE TABLE `consultas` (
 -- Extraindo dados da tabela `consultas`
 --
 
-INSERT INTO `consultas` (`id`, `idPaciente`, `idProfissional`, `dataConsulta`, `finalizada`, `created_at`, `updated_at`) VALUES
-(1, 3, 10, '2020-12-16 06:24:24', 'n', '2020-12-11 21:14:14', '2020-12-13 03:21:49'),
-(2, 6, 17, '2020-12-24 09:26:28', 'n', '2020-12-11 21:43:33', '2020-12-13 03:21:49'),
-(4, 1, 1, '2020-12-13 03:15:00', 'n', '2020-12-13 07:15:44', '2020-12-13 03:21:49'),
-(5, 10, 12, '2020-12-13 03:25:00', 'n', '2020-12-13 07:22:50', '2020-12-13 07:22:50');
+INSERT INTO `consultas` (`id`, `idPaciente`, `idProfissional`, `queixa`, `dataConsulta`, `finalizada`, `created_at`, `updated_at`) VALUES
+(17, 15, 21, 'Dor de Cabeça', '2020-12-14 20:39:00', 's', '2020-12-15 00:36:58', '2020-12-15 00:43:40'),
+(18, 16, 24, 'Alucinação', '2020-12-14 22:42:00', 's', '2020-12-15 00:37:14', '2020-12-15 00:53:14'),
+(19, 16, 21, 'Dor na Região Lombar', '2020-12-14 19:39:00', 'n', '2020-12-15 00:37:37', '2020-12-15 00:37:37'),
+(20, 17, 21, 'Dor na Cabeça', '2020-12-14 21:42:00', 'n', '2020-12-15 00:38:08', '2020-12-15 00:38:08'),
+(21, 20, 21, 'Acidente', '2020-12-14 19:42:00', 'n', '2020-12-15 00:40:48', '2020-12-15 00:40:48'),
+(22, 19, 22, 'Dor', '2020-12-15 20:43:00', 'n', '2020-12-15 00:41:01', '2020-12-15 00:41:01'),
+(23, 18, 21, 'Acidente', '2020-12-15 19:42:00', 's', '2020-12-15 00:41:20', '2020-12-15 01:00:52'),
+(24, 15, 21, 'Dor de Cabeça', '2020-12-14 19:46:00', 'n', '2020-12-15 00:44:10', '2020-12-15 00:44:10'),
+(25, 18, 21, 'Dor no braço', '2020-12-14 20:02:00', 'n', '2020-12-15 00:58:13', '2020-12-15 00:58:13');
 
 -- --------------------------------------------------------
 
@@ -115,7 +129,20 @@ CREATE TABLE `evolucao` (
 
 INSERT INTO `evolucao` (`id`, `idPaciente`, `situacao`, `observacoes`, `created_at`, `updated_at`) VALUES
 (1, 3, 'O paciente foi atendido tal tal tal...', 'Paciente alérgico à xxxxx', '2020-12-09 21:42:02', '2020-12-09 21:42:02'),
-(2, 3, 'De mal a pior', 'Não demonstrou melhoras', '2020-12-10 02:17:24', '2020-12-10 02:17:24');
+(2, 3, 'De mal a pior', 'Não demonstrou melhoras', '2020-12-10 02:17:24', '2020-12-10 02:17:24'),
+(3, 4, 'Estável', '8 dias', '2020-12-14 01:56:33', '2020-12-14 01:56:33'),
+(4, 4, 'Estável', '8 dias', '2020-12-14 02:00:21', '2020-12-14 02:00:21'),
+(5, 4, 'Estável', '8 dias', '2020-12-14 02:02:06', '2020-12-14 02:02:06'),
+(6, 3, 'Estável', '8 dias', '2020-12-14 02:06:41', '2020-12-14 02:06:41'),
+(7, 3, 'Estável', '8 dias', '2020-12-14 02:07:15', '2020-12-14 02:07:15'),
+(8, 12, 'Estável', 'Prurido', '2020-12-14 03:15:19', '2020-12-14 01:46:07'),
+(9, 12, 'Estável', 'Caso haja obstrução, operar', '2020-12-14 05:59:38', '2020-12-14 05:59:38'),
+(10, 14, 'Estável', 'Melhorou significamente', '2020-12-14 07:36:03', '2020-12-14 07:36:03'),
+(11, 15, 'Estável', 'Voltar em 5 dias', '2020-12-15 00:43:40', '2020-12-15 00:43:40'),
+(12, 16, 'Estável', 'Caso haja obstrução, operar', '2020-12-15 00:51:31', '2020-12-15 00:51:31'),
+(13, 16, 'Estável', 'Caso haja obstrução, operar', '2020-12-15 00:53:13', '2020-12-15 00:53:13'),
+(14, 18, 'Estável', 'Não fazer força', '2020-12-15 00:56:26', '2020-12-15 00:56:26'),
+(15, 18, 'Estável', 'Caso haja infecção, operar', '2020-12-15 01:00:52', '2020-12-15 01:00:52');
 
 -- --------------------------------------------------------
 
@@ -130,8 +157,8 @@ CREATE TABLE `medicamentos` (
   `periodo` varchar(50) NOT NULL,
   `horario` varchar(50) NOT NULL,
   `via` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -142,7 +169,15 @@ INSERT INTO `medicamentos` (`id`, `idPaciente`, `nome`, `periodo`, `horario`, `v
 (1, 3, 'Dipirona Líquida', '2 dias', '19h', 'oral', '2020-12-08 00:21:04', '2020-12-08 00:23:39'),
 (2, 3, 'Cloroquina', '900 dias', 'De três em três horas', 'Anal', '2020-12-08 00:42:16', '2020-12-08 00:42:16'),
 (3, 4, 'Simeticona', '5 dias', '6h', 'oral', '2020-12-08 00:43:03', '2020-12-08 00:43:03'),
-(4, 3, 'Furosemida', '3 dias', '1 vez ao dia', 'oral', '2020-12-10 02:51:25', '2020-12-10 02:51:25');
+(4, 3, 'Furosemida', '3 dias', '1 vez ao dia', 'oral', '2020-12-10 02:51:25', '2020-12-10 02:51:25'),
+(11, 12, 'Prednizolona e Fenergan', '3 dias', '1 vez ao dia', 'Oral', '2020-12-14 03:15:19', '2020-12-14 03:15:19'),
+(12, 12, 'Meloxican, Agemoxi, Tramadol', '3 dias, 5 dias, 5dias', 'SID (1 vez ao dia)', 'Oral', '2020-12-14 05:59:38', '2020-12-14 05:59:38'),
+(13, 14, 'Dipirona', '8 dias', '5 vezes', 'Oral', '2020-12-14 07:36:03', '2020-12-14 07:36:03'),
+(14, 15, 'Dipirona', '3 dias', '5 vezes', 'Oral', '2020-12-15 00:43:40', '2020-12-15 00:43:40'),
+(15, 16, 'Fenergan', '8 dias', 'SID (1 vez ao dia)', 'Oral', '2020-12-15 00:51:31', '2020-12-15 00:51:31'),
+(16, 16, 'Meloxican, Agemoxi, Tramadol', '3 dias, 5 dias, 5dias', 'SID (1 vez ao dia)', 'Oral', '2020-12-15 00:53:13', '2020-12-15 00:53:13'),
+(17, 18, 'Antibiótico', '20 dias', '2 vezes ao dia', 'Oral', '2020-12-15 00:56:26', '2020-12-15 00:56:26'),
+(18, 18, 'Antibiótico', '10 dias', '1 vez ao dia', 'Oral', '2020-12-15 01:00:52', '2020-12-15 01:00:52');
 
 -- --------------------------------------------------------
 
@@ -171,15 +206,12 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNasc`, `idEvolucao`, `idAnamnese`, `idMedicamentos`, `idProfissional`, `idSinaisVitais`, `created_at`, `updated_at`) VALUES
-(1, 'Paciente 1', '98765432101', '(51) 777777', 'Rua tal n sei o q', '2000', 1, 1, 1, 1, 1, '2020-12-07 05:18:05', '2020-12-08 00:21:50'),
-(2, 'Paciente Fulano', '987654321', '12321654897', 'Av sei lá', '1820', 1, 1, 1, 12, 3, '2020-12-07 22:56:44', '2020-12-08 00:21:50'),
-(3, 'Paciente de tal', '321321321', '32132132132', 'Av sei lá o q e tal', '3211', 1, 1, 1, 15, 3, '2020-12-07 23:22:05', '0000-00-00 00:00:00'),
-(4, 'Paciente joao albertp', '32158469684', '5456513', 'asdasd', '1990', 1, 1, 1, 15, 3, '2020-12-07 23:25:08', '2020-12-07 23:25:08'),
-(5, 'Paciente Alfredo', '8888888888', '(51) 99999-', 'Beco Diagonal', '1994', NULL, NULL, NULL, NULL, NULL, '2020-12-11 04:33:28', '2020-12-11 04:33:28'),
-(6, 'Paciente Jeremias', '32165413', '5643132', 'Avendia avenida', '2020', NULL, NULL, NULL, NULL, NULL, '2020-12-11 04:35:07', '2020-12-11 04:35:07'),
-(9, 'Joao Maria José', '#########', '3213213213', 'Rua 7', '1800', NULL, NULL, NULL, NULL, NULL, '2020-12-12 00:26:33', '2020-12-12 00:26:33'),
-(10, 'Maria', '777', '777', 'Av Alameda Rua', '1975', NULL, NULL, NULL, NULL, NULL, '2020-12-12 00:27:40', '2020-12-12 00:27:40'),
-(11, 'Joao Maria José', '#########', '#########', 'Rua 7', '1800', NULL, NULL, NULL, NULL, NULL, '2020-12-12 00:28:28', '2020-12-12 00:28:28');
+(15, 'Joao', '1', '(51)99999-9', 'Av Mauá', '1998', NULL, NULL, NULL, NULL, NULL, '2020-12-15 00:34:00', '2020-12-15 00:34:00'),
+(16, 'Márcia', '2', '(51) 99999-', 'Av Independência', '1956', NULL, NULL, NULL, NULL, NULL, '2020-12-15 00:34:32', '2020-12-15 00:34:32'),
+(17, 'Diógenes', '3', '(51)99888-8', 'Av Voluntários', '1975', NULL, NULL, NULL, NULL, NULL, '2020-12-15 00:34:59', '2020-12-15 00:34:59'),
+(18, 'Alfredo', '4', '(51) 99999-', 'Av. Sepúlveda, 45', '1987', NULL, NULL, NULL, NULL, NULL, '2020-12-15 00:38:50', '2020-12-15 00:38:50'),
+(19, 'Maria', '5', '(51) 99999-', 'Av Assis Brasil, 54', '1950', NULL, NULL, NULL, NULL, NULL, '2020-12-15 00:39:19', '2020-12-15 00:39:19'),
+(20, 'Gioavana', '6', '(51)3030-30', 'Rua Polar, 80', '1968', NULL, NULL, NULL, NULL, NULL, '2020-12-15 00:40:11', '2020-12-15 00:40:11');
 
 -- --------------------------------------------------------
 
@@ -205,14 +237,10 @@ CREATE TABLE `profissionais` (
 --
 
 INSERT INTO `profissionais` (`id`, `nome`, `cpf`, `telefone`, `endereco`, `anoNasc`, `especializacao`, `senha`, `created_at`, `updated_at`) VALUES
-(1, 'Frankeinstein', '1234', '123', 'asd', '32131', 'Psicólogo', '$2y$10$0f1FhMPEPNiu8bXrSWMzI.RJSS1f7VgkcvtoDf3eAiEPUyG4KJaNu', '2020-12-07 09:41:37', '2020-12-07 09:41:37'),
-(8, 'Matcha', '11111111111', '99999999999', 'Av Assis Brasil, 123456', '2018', 'Ortopedista', '$2y$10$4ZMiPhf8Mv0ROYi1vtZiee5k7TubhfJ8j2d..igelQP', '2020-12-07 07:45:45', '2020-12-07 07:45:45'),
-(10, 'Áuzio', '8888888888', '(51) 99999-', 'Av Sertório', '1810', 'Oncologista', '$2y$10$WfDwIfrT5RmZVFisvPOvNORnO9GVlQnHqZw.j5le4fy', '2020-12-07 08:33:34', '2020-12-07 08:33:34'),
-(12, 'Anderson', '12345678910', '(51) 99999-', 'av tal de tal, 666', '1994', 'Oncologista', '$2y$10$nDS923T4VCybjuaLcK1PpOd4fLcDO3S3PQenmajKg7tYAUjIJGOWS', '2020-12-07 08:50:58', '2020-12-07 08:50:58'),
-(13, 'Susan', '98765432110', '(51) 99999-', 'Av Sertório', '1994', 'Dermatologista', '$2y$10$kFsGLczNYvPdprkKwiyWi.bwOBbqj4pMg2qVZYWR325GVewdCfrXO', '2020-12-07 09:36:02', '2020-12-07 09:36:02'),
-(15, 'Áuzio', '123', '3213213213', 'Rua 7', '1975', 'Oncologista', '$2y$10$9ncSRbHnTTmdRXxrgEze5.wWLB6j4hRc35eSjBUisVU5MHSr4QqBi', '2020-12-12 21:51:54', '2020-12-12 21:51:54'),
-(16, 'Mário', '222', '98764321', 'Av. Ceará', '1980', 'Odontologia', '$2y$10$J6NDQE9A6PD2QJnQbThUe.pxPDwqDME/nYHmhxE7izdoV9hi2VI/q', '2020-12-11 02:46:00', '2020-12-11 02:46:00'),
-(17, 'Pablo', '9999999999', '99999999999', 'Av 21213121', '1998', 'Gastro', '$2y$10$UovZlj.mdE.4Ja/KAyweeey7RWVwG3uNPOKPKEIWfon7ebrEHL7jC', '2020-12-11 04:13:47', '2020-12-11 04:13:47');
+(21, 'Dráuzio', '1', '(51)1111-11', 'Av. Ceará, 50', '1942', 'Oncologista', '$2y$10$3w6kntU08SMaRAveDC9yWOBkCeEs.Nulcy7hsrEGp494qMzSKlHJm', '2020-12-15 00:27:09', '2020-12-15 00:27:09'),
+(22, 'Susan', '2', '(51)2222-22', 'Av Assis Brasil, 123456', '1994', 'Dermatologista', '$2y$10$5zk2/AjV/9kOyC4SNMjqg.sLSekeEd0wcYJ/xnlmD2fd8pQVGeC8K', '2020-12-15 00:29:18', '2020-12-15 00:29:18'),
+(23, 'Anderson', '3', '(51)3333-33', 'Rua 7, 55', '1994', 'Ortopedista', '$2y$10$CG/letIA9X59nmiyXsKfeO6a7krZL62l9j9Lqn0C6SYCrFuN7Pzw6', '2020-12-15 00:30:32', '2020-12-15 00:30:32'),
+(24, 'Matcha', '4', '(51) 4444-4', 'Rua Paes Leme, 462', '1985', 'Pisquiatra', '$2y$10$i9yDePC.FlrvtPYaayw4aOULb94WWxWWAhcLD1ux1q1JrYogus23S', '2020-12-15 00:31:39', '2020-12-15 00:31:39');
 
 -- --------------------------------------------------------
 
@@ -238,7 +266,15 @@ CREATE TABLE `sinaisvitais` (
 
 INSERT INTO `sinaisvitais` (`id`, `idPaciente`, `pressao`, `batimentos`, `saturacaoOxigenio`, `nivelDioxidoCarbono`, `temperatura`, `created_at`, `updated_at`) VALUES
 (1, 3, '12/8', '60', 'sei lá como se mede isso', 'seilá', 36, '2020-12-10 02:36:43', '2020-12-10 02:36:43'),
-(2, 3, '14/9', '100', '321321', '654', 37, '2020-12-10 02:38:06', '2020-12-10 02:38:06');
+(2, 3, '14/9', '100', '321321', '654', 37, '2020-12-10 02:38:06', '2020-12-10 02:38:06'),
+(8, 12, '13/9', '60', '5', '2', 36, '2020-12-14 03:15:19', '2020-12-14 01:47:09'),
+(9, 12, '18/12', '110', '654', '6546', 37, '2020-12-14 05:59:39', '2020-12-14 05:59:39'),
+(10, 14, '12/8', '70', '32131', '321321', 36, '2020-12-14 07:36:03', '2020-12-14 07:36:03'),
+(11, 15, '12/8', '70', '654', '6546', 36, '2020-12-15 00:43:40', '2020-12-15 00:43:40'),
+(12, 16, '13/9', '110', '654', '321', 36, '2020-12-15 00:51:31', '2020-12-15 00:51:31'),
+(13, 16, '13/9', '110', '321', '321', 36, '2020-12-15 00:53:13', '2020-12-15 00:53:13'),
+(14, 18, '12/8', '60', '522', '456', 36, '2020-12-15 00:56:26', '2020-12-15 00:56:26'),
+(15, 18, '12/8', '110', '654', '321', 36, '2020-12-15 01:00:52', '2020-12-15 01:00:52');
 
 -- --------------------------------------------------------
 
@@ -259,11 +295,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `senha`, `created_at`, `updated_at`) VALUES
-(1, 'sus@email.com', '$2y$10$nZ4YGmor6zsnvz0BCQXO6.UFIcypXi63HixX4MLDawV1MDsx1z3fS', '2020-12-11 04:23:17', '2020-12-11 04:23:17');
+(4, 'user@email.com', '$2y$10$FtiD//0MQQ4ndrIHI/YCLOpJzPZGY0VgoCQhsVx8OHkniD3NRUlja', '2020-12-15 00:22:24', '2020-12-15 00:22:24');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `adm`
+--
+ALTER TABLE `adm`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `anamnese`
+--
+ALTER TABLE `anamnese`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `consultas`
@@ -312,46 +360,58 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `adm`
+--
+ALTER TABLE `adm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `anamnese`
+--
+ALTER TABLE `anamnese`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT de tabela `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `evolucao`
 --
 ALTER TABLE `evolucao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `medicamentos`
 --
 ALTER TABLE `medicamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `profissionais`
 --
 ALTER TABLE `profissionais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `sinaisvitais`
 --
 ALTER TABLE `sinaisvitais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

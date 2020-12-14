@@ -25,7 +25,10 @@ class Web extends Controller
     }
 
     public function home(): void
-    {
+    {   
+        if(!empty($_SESSION["profissional"])){
+            $this->router->redirect("adm.home");
+        }
         echo $this->view->render("web/home");
     }
 
@@ -44,15 +47,16 @@ class Web extends Controller
         echo $this->view->render("web/adm");
     }
 
-    // public function add($data): void
-    // {
-    //     $senha = filter_var($data["senha"], FILTER_DEFAULT);
-    //     $senha = password_hash($senha, PASSWORD_DEFAULT);
+    //CADASTRA ADM
+    public function add($data): void
+    {
+        $senha = filter_var($data["senha"], FILTER_DEFAULT);
+        $senha = password_hash($senha, PASSWORD_DEFAULT);
 
-    //     $this->adm->email = $data["email"];
-    //     $this->adm->senha = $senha;
-    //     $this->adm->save();
-    // }
+        $this->adm->email = $data["email"];
+        $this->adm->senha = $senha;
+        $this->adm->save();
+    }
 
     /**
      * Teste
