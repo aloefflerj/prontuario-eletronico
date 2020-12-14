@@ -9,7 +9,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
+        html{
+            background-color: red;
+            height: 100%;
+        }
+        body{
+            min-height: 100%;
+        }
+        main .main-content{
+            min-height: 100%;
+        }
+        #corpo{
+            min-height: 100%;
+        }
     </style>
+    <?php $v->section("css"); //Injeta o css?>
+
 </head>
 
 <body>
@@ -33,10 +48,6 @@
                         endif;
                     ?>
                 ">Sistema de Prontuário Eletrônico</a>
-            <form class="form-inline">
-                <!--<span class="nav-link">Sign Out</span>-->
-                
-            </form>
 
             <?php if(!empty($_SESSION["profissional"]) || !empty($_SESSION["user"]) || !empty($_SESSION["adm"])): ?>
 
@@ -50,7 +61,7 @@
                     else:
                         echo $router->route("web.home");
                     endif; 
-                ?>">Logout</a>
+                ?>"><span class="nav-link">Logout</span></a>
                 
             <?php endif; ?>
         </nav>
@@ -66,10 +77,12 @@
 
     
 
-    <!-- Jpopper -->
+    
     <footer class="main_footer">
     <?= site("name")?> - Todos os direitos reservados
     </footer>
+    
+    <!-- Jpopper -->
     <script src="<?= url("/source/assets/js/jquery.js") ?>"></script>
     <script src="<?= js("/jquery.js"); ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
