@@ -1,8 +1,8 @@
 <?php $v->layout("_bootstrap"); ?>
 
 <div id = "corpo" class="jumbotron vertical-center">
-    <div class="row">
-        <h2 id="h2" class="container-fluid align-middle col-md-4">Login de Admisintrador</h2>
+    <div class="row" style="margin-bottom: 20px;">
+        <h2 id="h2" class="container-fluid align-middle col-md-4 display-4 text-center">Adm Login</h2>
     </div>
     <div class="row">
         <form id = "login" class="container-fluid border-rounded align-middle col-md-4" action="<?= $router->route("auth.admLogin"); ?>" method="post">

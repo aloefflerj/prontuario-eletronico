@@ -9,19 +9,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
-        html{
-            background-color: red;
-            height: 100%;
-        }
-        body{
+        html, body, main, #copro{
             min-height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #E9ECEF;
         }
-        main .main-content{
-            min-height: 100%;
-        }
+
         #corpo{
-            min-height: 100%;
+            height: 80vh;
+            margin: 0;
         }
+        footer{
+            height: 15vh;
+        } 
     </style>
     <?php $v->section("css"); //Injeta o css?>
 
@@ -34,7 +35,7 @@
         echo $v->section("navbar");
     else:?>
         <nav class="navbar navbar-dark bg-dark">
-            <a  class="navbar-brand" 
+            <a  class="navbar-brand"
                 href="
                     <?php 
                         if(!empty($_SESSION["user"])):
@@ -47,11 +48,14 @@
                             echo $router->route("web.home");
                         endif;
                     ?>
-                ">Sistema de Prontuário Eletrônico</a>
+                "> <img src="source\assets\img\icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy" style="margin-right:10px">Sistema de Prontuário Eletrônico
+            </a>
 
             <?php if(!empty($_SESSION["profissional"]) || !empty($_SESSION["user"]) || !empty($_SESSION["adm"])): ?>
 
-                <a href="<?php 
+                <a 
+                style="text-decoration:none; color:#fff"  
+                href="<?php 
                     if(!empty($_SESSION["profissional"])): 
                         echo $router->route("auth.profissionalLogout");
                     elseif(!empty($_SESSION["user"])):
@@ -68,19 +72,17 @@
     <?php
     endif;
     ?>
-
+    
+    
     <!-- Corpo da pagina -->
 
     <main class="main_content">
         <?= $v->section("content");?>
     </main>
+    <img src="" alt="">
 
     
-
     
-    <footer class="main_footer">
-    <?= site("name")?> - Todos os direitos reservados
-    </footer>
     
     <!-- Jpopper -->
     <script src="<?= url("/source/assets/js/jquery.js") ?>"></script>

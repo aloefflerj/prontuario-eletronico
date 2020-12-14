@@ -19,3 +19,4 @@
 <a href="<?= $router->route("adm.profissional"); ?>">Registro de Profissionais</a>
 <br>
 <a href="<?= $router->route("adm.paciente"); ?>">Registro de Pacientes</a>
+
