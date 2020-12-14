@@ -13,7 +13,7 @@ function site(string $param = null): string
  
 function asset(string $path): string
 {
-    return SITE["root"] . "/views/assets/{$path}";
+    return SITE["root"] . "/source/assets/{$path}";
 }
  
 function css(string $path): string

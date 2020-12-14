@@ -48,7 +48,7 @@
                             echo $router->route("web.home");
                         endif;
                     ?>
-                "> <img src="source\assets\img\icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy" style="margin-right:10px">Sistema de Prontuário Eletrônico
+                "> <img src="<?= img("icon.png"); ?>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy" style="margin-right:10px">Sistema de Prontuário Eletrônico
             </a>
 
             <?php if(!empty($_SESSION["profissional"]) || !empty($_SESSION["user"]) || !empty($_SESSION["adm"])): ?>
