@@ -1,8 +1,6 @@
 <?php
 ob_start();
 session_start();
-
-
 require __DIR__ . "/vendor/autoload.php";
 
 use CoffeeCode\Router\Router;

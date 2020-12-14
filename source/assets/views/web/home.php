@@ -1,6 +1,7 @@
-<?php $v->layout("_bootstrap") ?>
+<?php $v->layout("_bootstrap");  ?>
 
 <div id = "corpo" class="jumbotron vertical-center">
+    <div class="row"><img class="align-middle" src="source\assets\img\icon-2.png" alt=""></div>
     <div class="row" style="margin-bottom:50px;">
         <h2 id="h2" class="container-fluid align-middle col-md-4 display-4 text-center">Bem Vindo</h2>
     </div>
