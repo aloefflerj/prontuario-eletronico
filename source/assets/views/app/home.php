@@ -37,7 +37,7 @@
                 ?>
                         <tbody>
                             <tr>
-                                <th scope="row"><?= (new DateTime($consulta->dataConsulta))->format("H:m"); ?> </th>
+                                <th scope="row"><?= horaFormat($consulta->dataConsulta); ?> </th>
                                 <td> <?php 
                                     foreach($pacientes as $paciente): 
                                         if($paciente->id == $consulta->idPaciente):

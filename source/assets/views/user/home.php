@@ -15,11 +15,8 @@
 <?php
     if($consultas):
         foreach($consultas as $consulta):
-            $diaDaConsulta = new DateTime($consulta->dataConsulta);
-            $hoje = date("d/m/y");
-
-            echo $hoje;
-            if($diaDaConsulta->format("d/m/y") == $hoje && $consulta->finalizada == "n"):
+            $diaDaConsulta = dataFormat($consulta->dataConsulta);
+            if($diaDaConsulta == dataHoje() && $consulta->finalizada == "n"):
 ?>
                 <h4><?= $consulta->id; ?> </h4>
                 <p>Consulta de: 
@@ -42,8 +39,7 @@
                 </p>
                 <p>Hora: 
                     <?php 
-                        $horaDaConsulta = new DateTime($consulta->dataConsulta);
-                        echo $horaDaConsulta->format('H:i');
+                        echo horaFormat($consulta->dataConsulta);
                     ?>
                 </p>
 <?php

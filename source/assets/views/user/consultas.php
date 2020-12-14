@@ -68,8 +68,7 @@
                 </p>
                 <p>Hora: 
                     <?php 
-                        $dataConsulta = new DateTime($consulta->dataConsulta);
-                        echo $dataConsulta->format('d/m/y H:i');
+                        echo dataHoraFormat($consulta->dataConsulta);
                     ?>
                 </p>
                 <p>Status: <?php if($consulta->finalizada == "n"): echo "Aberta"; else: echo "Fechada"; endif;?></p>

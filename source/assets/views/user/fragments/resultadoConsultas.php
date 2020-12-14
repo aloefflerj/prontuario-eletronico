@@ -25,7 +25,7 @@
                 ?>
             <?php endforeach; ?>
         </p>
-        <p>Dia e Hora:      <?= (new DateTime($consulta->dataConsulta))->format("d/m/Y h:m"); ?></p>
+        <p>Dia e Hora:      <?= dataHoraFormat($consulta->dataConsulta); ?></p>
         <p>Status: <?php if($consulta->finalizada == "n"): echo "Aberta"; else: echo "Fechada"; endif;?></p>
         <form action="<?= $router->route("auth.deletaConsulta"); ?>" method="post">
                 <input type="hidden" name="id" id="id" value="<?= $consulta->id; ?>">

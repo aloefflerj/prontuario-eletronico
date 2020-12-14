@@ -67,3 +67,33 @@ function url(string $uri = null): string
  
     return site();
 }
+
+function horaFormat($data)
+{
+    $hoje = new DateTime($data, new DateTimeZone('America/Sao_Paulo'));
+    return $hoje->format("H:i");
+}
+
+function dataFormat($data)
+{
+    $hoje = new DateTime($data, new DateTimeZone('America/Sao_Paulo'));
+    return $hoje->format("d/m/y");
+}
+
+function dataHoraFormat($data)
+{
+    $hoje = new DateTime($data, new DateTimeZone('America/Sao_Paulo'));
+    return $hoje->format("d/m/y H:i");
+}
+
+function dataHoje()
+{
+    $hoje = new DateTime("now", new DateTimeZone('America/Sao_Paulo'));
+    return $hoje->format("d/m/y");
+}
+
+function dataHoraHoje()
+{
+    $hoje = new DateTime("now", new DateTimeZone('America/Sao_Paulo'));
+    return $hoje->format("d/m/y H:i");
+}
