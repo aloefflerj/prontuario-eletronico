@@ -80,12 +80,15 @@ class App extends Controller
     {
         //Procura e seleciona o paciente
         $paciente = $this->pacientes->findById($data["idPaciente"]);
+        //Procura e seleciona a consulta
+        $consulta = $this->consultas->findById($data["idConsulta"]);
         //Valida se pertence ao devido profissional
         if($data["idProfissional"] != $_SESSION["profissional"]){
             $this->router->redirect("app.home");
         }
         echo $this->view->render("app/atendimento", [
-            "paciente" =>$paciente
+            "paciente" => $paciente,
+            "consulta" => $consulta
         ]);
     }
 
@@ -129,9 +132,11 @@ class App extends Controller
         $this->anamnese->register($idPaciente, $qp, $hda, $antecedentesPessoais, $antecedentesFamiliares, $habitos, $revisaoSistemas);
 
         //Marcando consulta como atendida
-        $consulta = $this->consultas->findBy("idPaciente", $idPaciente);
+        $consulta = $this->consultas->findById($data["idConsulta"]);
         $consulta->finalizada = "s";
         $consulta->save();
+            
+        
 
         $this->router->redirect("app.home");
 
