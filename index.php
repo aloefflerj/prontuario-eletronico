@@ -85,8 +85,8 @@ $router->get("/adm/logout", "Auth:admLogout", "auth.admLogout");
  */
 $router->group("pacientes");
 $router->get("/", "App:home", "app.home");
-$router->get("/detalhes/{id}", "App:detalhes", "app.detalhes");
-$router->get("/atendimento/{id}", "App:atendimento", "app.atendimento");
+$router->get("/detalhes/{idPaciente}/{idProfissional}", "App:detalhes", "app.detalhes");
+$router->get("/atendimento/{idPaciente}/{idProfissional}", "App:atendimento", "app.atendimento");
 $router->post("/concluir", "App:concluir", "app.concluir");
 //App ajax
 $router->post("/medicamentos/{id}", "App:medicamentos", "app.medicamentos");

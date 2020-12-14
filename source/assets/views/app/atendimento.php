@@ -6,6 +6,45 @@
 
     <?php /**Paciente */ ?>
     <input type="hidden" name="idPaciente" id="idPaciente" value="<?= $paciente->id; ?>">
+
+    <?php /**Anamnese */ ?>
+    <h3>Anamnese: </h3>
+    <label for="qp">Queixa Principal (QP): </label>
+    <input type="text" name="qp" id="qp">
+
+    <label for="hda">História da Doença Atual (HDA): </label>
+    <input type="text" name="hda" id="hda">
+
+    <label for="antecedentesPessoais">Antecedentes Pessoais: </label>
+    <input type="text" name="antecedentesPessoais" id="antecedentesPessoais">
+
+    <label for="antecedentesFamiliares">Antecedentes Familiares: </label>
+    <input type="text" name="antecedentesFamiliares" id="antecedentesFamiliares">
+
+    <label for="habitos">Hábitos: </label>
+    <input type="text" name="habitos" id="habitos">
+
+    <label for="revisaoSistemas">Revisão Sistemas: </label>
+    <input type="text" name="revisaoSistemas" id="revisaoSistemas">
+
+    <?php /**Sinais Vitais */ ?>
+    <h3>Sinais Vitais: </h3>
+
+    <label for="pressao">Pressão: </label>
+    <input type="text" name="pressao" id="pressao">
+
+    <label for="batimentos">Batimentos: </label>
+    <input type="text" name="batimentos" id="batimentos">
+
+    <label for="saturacaoOxigenio">Saturação Oxigênio: </label>
+    <input type="text" name="saturacaoOxigenio" id="saturacaoOxigenio">
+
+    <label for="nivelDioxidoCarbono">Nível Dióxido de Carbono</label>
+    <input type="text" name="nivelDioxidoCarbono" id="nivelDioxidoCarbono">
+
+    <label for="temperatura">Temperatura: </label>
+    <input type="text" name="temperatura" id="temperatura">
+    
     
     <?php /**Medicamentos */ ?>
     <h3>Medicamentos a serem ministrados: </h3>
@@ -30,45 +69,7 @@
 
     <label for="observacoes">Observações: </label>
     <input type="text" name="observacoes" id="observacoes">
-
-    <?php /**Sinais Vitais */ ?>
-    <h3>Sinais Vitais: </h3>
-
-    <label for="pressao">Pressão: </label>
-    <input type="text" name="pressao" id="pressao">
-
-    <label for="batimentos">Batimentos: </label>
-    <input type="text" name="batimentos" id="batimentos">
-
-    <label for="saturacaoOxigenio">Saturação Oxigênio: </label>
-    <input type="text" name="saturacaoOxigenio" id="saturacaoOxigenio">
-
-    <label for="nivelDioxidoCarbono">Nível Dióxido de Carbono</label>
-    <input type="text" name="nivelDioxidoCarbono" id="nivelDioxidoCarbono">
-
-    <label for="temperatura">Temperatura: </label>
-    <input type="text" name="temperatura" id="temperatura">
     
-    <?php /**Anamnese */ ?>
-    <h3>Anamnese: </h3>
-    <label for="qp">Queixa Principal (QP): </label>
-    <input type="text" name="qp" id="qp">
-
-    <label for="hda">História da Doença Atual (HDA): </label>
-    <input type="text" name="hda" id="hda">
-
-    <label for="antecedentesPessoais">Antecedentes Pessoais: </label>
-    <input type="text" name="antecedentesPessoais" id="antecedentesPessoais">
-
-    <label for="antecedentesFamiliares">Antecedentes Familiares: </label>
-    <input type="text" name="antecedentesFamiliares" id="antecedentesFamiliares">
-
-    <label for="habitos">Hábitos: </label>
-    <input type="text" name="habitos" id="habitos">
-
-    <label for="revisaoSistemas">Revisão Sistemas: </label>
-    <input type="text" name="revisaoSistemas" id="revisaoSistemas">
-
     <?php /**FIM */ ?>
     <input type="submit" value="Finalizar Atendimento">
 

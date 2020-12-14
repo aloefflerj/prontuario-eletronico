@@ -17,6 +17,8 @@
         foreach($consultas as $consulta):
             $diaDaConsulta = new DateTime($consulta->dataConsulta);
             $hoje = date("d/m/y");
+
+            echo $hoje;
             if($diaDaConsulta->format("d/m/y") == $hoje && $consulta->finalizada == "n"):
 ?>
                 <h4><?= $consulta->id; ?> </h4>

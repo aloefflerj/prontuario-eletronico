@@ -29,6 +29,8 @@
             endif;       
         ?>
     </select>
+    <label for="queixa">Queixa: </label>
+    <input type="text" name="queixa" id="queixa">
     <?php //SELECIONA DATA ?>
     <label for="dataConsulta">Data: </label>
     <input type="datetime-local" name="dataConsulta" id="dataConsulta">

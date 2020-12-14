@@ -96,7 +96,7 @@ class User extends Controller
         }
         
 
-        echo $this->view->render("user/fragments/resultado", ["paciente" => $paciente]);
+        echo $this->view->render("user/fragments/resultadoPacientes", ["paciente" => $paciente]);
     }
 
     //Procura consulta

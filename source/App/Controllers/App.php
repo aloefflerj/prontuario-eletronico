@@ -45,27 +45,30 @@ class App extends Controller
     
     public function home(): void
     {
-        //Consulta o profissional
+        //Procura o profissional
         $profissional = $this->profissionais->findById($_SESSION["profissional"]);
-        //Consulta pacientes do profissional
-        $pacientesDoProfissional =  $this->pacientes->filterBy("idProfissional", $_SESSION["profissional"]);
+        //Procura consultas do profissional
+        $consultasDoProfissional =  $this->consultas->filterBy("idProfissional", $_SESSION["profissional"]);
+        //Pega todos os pacientes
+        $pacientes = $this->pacientes->find()->fetch(true);
         //Renderiza a página
         echo $this->view->render("app/home", [
-            "pacientes" => $pacientesDoProfissional,
-            "profissional" => $profissional
+            "consultas"     => $consultasDoProfissional,
+            "profissional"  => $profissional,
+            "pacientes"     => $pacientes
             ]);
     }
 
     public function detalhes($data): void
     {
         //Procura e seleciona o paciente
-        $paciente = $this->pacientes->findById($data["id"]);
+        $paciente = $this->pacientes->findById($data["idPaciente"]);
         //Valida se pertence ao devido profissional
-        if($paciente->idProfissional != $_SESSION["profissional"]){
+        if($data["idProfissional"] != $_SESSION["profissional"]){
             $this->router->redirect("app.home");
         }
         //Procura os medicamentos do paciente
-        $medicamentos = $this->medicamentos->filterBy("idPaciente", $data["id"]);
+        $medicamentos = $this->medicamentos->filterBy("idPaciente", $data["idPaciente"]);
         //Renderiza a página
         echo $this->view->render("app/detalhes_pacientes", [
             "paciente"      => $paciente,
@@ -76,9 +79,9 @@ class App extends Controller
     public function atendimento($data): void
     {
         //Procura e seleciona o paciente
-        $paciente = $this->pacientes->findById($data["id"]);
+        $paciente = $this->pacientes->findById($data["idPaciente"]);
         //Valida se pertence ao devido profissional
-        if($paciente->idProfissional != $_SESSION["profissional"]){
+        if($data["idProfissional"] != $_SESSION["profissional"]){
             $this->router->redirect("app.home");
         }
         echo $this->view->render("app/atendimento", [
@@ -97,7 +100,7 @@ class App extends Controller
         $via        = filter_var($data["via"], FILTER_SANITIZE_STRIPPED);
         //Evolução
         $situacao   = filter_var($data["situacao"], FILTER_SANITIZE_STRIPPED);
-        $observacoes= filter_var($data["periodo"], FILTER_SANITIZE_STRIPPED);
+        $observacoes= filter_var($data["observacoes"], FILTER_SANITIZE_STRIPPED);
         //Sinais Vitais
         $pressao            = filter_var($data["pressao"], FILTER_SANITIZE_STRIPPED);
         $batimentos         = filter_var($data["batimentos"], FILTER_SANITIZE_STRIPPED);

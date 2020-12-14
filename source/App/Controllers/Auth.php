@@ -243,6 +243,7 @@ class Auth extends Controller
         //Filtragem de segurança
         $idPaciente     = filter_var($data["idPaciente"], FILTER_VALIDATE_INT);
         $idProfissional = filter_var($data["idProfissional"], FILTER_VALIDATE_INT);
+        $queixa         = filter_var($data["queixa"], FILTER_SANITIZE_STRIPPED);
         $dataConsulta   = filter_var($data["dataConsulta"], FILTER_SANITIZE_STRIPPED);
         $finalizada = "n";
 
@@ -254,6 +255,7 @@ class Auth extends Controller
         $this->consultas->register(
             $idPaciente,
             $idProfissional,
+            $queixa,
             $dataConsulta,
             $finalizada
         );
