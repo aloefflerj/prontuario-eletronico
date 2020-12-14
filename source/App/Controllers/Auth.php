@@ -5,6 +5,7 @@ namespace Source\App\Controllers;
 use Core\Controller;
 use Source\App\Models\Profissionais;
 use Source\App\Models\Adm;
+use Source\App\Models\Consultas;
 use Source\App\Models\Pacientes;
 use Source\App\Models\Users;
 
@@ -21,6 +22,8 @@ class Auth extends Controller
         $this->users = new Users();
         /**@var Adm*/
         $this->adm = new Adm();
+        /**@var Consultas */
+        $this->consultas = new Consultas();
     }
 
     /**
@@ -230,6 +233,41 @@ class Auth extends Controller
 
         $this->router->redirect("web.home");  
         
+    }
+
+    /**
+     * AUTENTICAÇÃO DE CONSULTAS -------------------------------------------------------------
+     */
+    public function novaConsulta($data): void
+    {
+        //Filtragem de segurança
+        $idPaciente     = filter_var($data["idPaciente"], FILTER_VALIDATE_INT);
+        $idProfissional = filter_var($data["idProfissional"], FILTER_VALIDATE_INT);
+        $queixa         = filter_var($data["queixa"], FILTER_SANITIZE_STRIPPED);
+        $dataConsulta   = filter_var($data["dataConsulta"], FILTER_SANITIZE_STRIPPED);
+        $finalizada = "n";
+
+        //Valida se a senha está vazia
+        if(in_array("", $data)){
+            echo $this->ajaxMessage("Insira um valor válido.", "error");
+            return;
+        }
+        $this->consultas->register(
+            $idPaciente,
+            $idProfissional,
+            $queixa,
+            $dataConsulta,
+            $finalizada
+        );
+
+        $this->router->redirect("user.home");
+    }
+
+    public function deletaConsulta($data): void
+    {
+        $consulta = $this->consultas->findById($data["id"]);
+        $consulta->destroy();
+        $this->router->redirect("user.consultas");
     }
 
 }

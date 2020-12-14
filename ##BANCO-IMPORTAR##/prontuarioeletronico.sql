@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Dez-2020 às 18:53
--- Versão do servidor: 10.4.17-MariaDB
--- versão do PHP: 7.4.13
+-- Tempo de geração: 13-Dez-2020 às 04:23
+-- Versão do servidor: 10.4.14-MariaDB
+-- versão do PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,7 +79,7 @@ CREATE TABLE `consultas` (
   `idPaciente` int(11) NOT NULL,
   `idProfissional` int(11) NOT NULL,
   `dataConsulta` datetime NOT NULL,
-  `finalizada` tinyint(1) NOT NULL DEFAULT 0,
+  `finalizada` varchar(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -89,8 +89,10 @@ CREATE TABLE `consultas` (
 --
 
 INSERT INTO `consultas` (`id`, `idPaciente`, `idProfissional`, `dataConsulta`, `finalizada`, `created_at`, `updated_at`) VALUES
-(1, 3, 10, '2020-12-16 06:24:24', 0, '2020-12-11 21:14:14', '2020-12-11 21:14:14'),
-(2, 6, 17, '2020-12-24 09:26:28', 0, '2020-12-11 21:43:33', '2020-12-11 21:43:33');
+(1, 3, 10, '2020-12-16 06:24:24', 'n', '2020-12-11 21:14:14', '2020-12-13 03:21:49'),
+(2, 6, 17, '2020-12-24 09:26:28', 'n', '2020-12-11 21:43:33', '2020-12-13 03:21:49'),
+(4, 1, 1, '2020-12-13 03:15:00', 'n', '2020-12-13 07:15:44', '2020-12-13 03:21:49'),
+(5, 10, 12, '2020-12-13 03:25:00', 'n', '2020-12-13 07:22:50', '2020-12-13 07:22:50');
 
 -- --------------------------------------------------------
 
@@ -313,7 +315,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `evolucao`

@@ -18,36 +18,48 @@
                 </div>
         </main>
 
-        <!-- Tabela de Pacientes -->
+        <!-- Tabela de Consultas -->
         <main class="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4" role="main">
+        <h3 class="h3">Consultas para Hoje: </h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Cpf</th>
+                        <th scope="col">Horário</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Queixa</th>
                         <th scope="col">Opções</th>
                     </tr>
                 </thead>
                 <?php
-                if ($pacientes) :
-                    foreach ($pacientes as $paciente) :
+                if ($consultas) :
+                    foreach ($consultas as $consulta):
+                        if($consulta->finalizada == "n"):
                 ?>
                         <tbody>
                             <tr>
-                                <th scope="row"><?= $paciente->id; ?> </th>
-                                <td> <?= $paciente->nome; ?> </td>
-                                <td> <?= $paciente->cpf; ?> </td>
+                                <th scope="row"><?= horaFormat($consulta->dataConsulta); ?> </th>
+                                <td> <?php 
+                                    foreach($pacientes as $paciente): 
+                                        if($paciente->id == $consulta->idPaciente):
+                                            echo $paciente->nome;
+                                        endif;
+                                    endforeach;
+                                    ?> 
+                                </td>
+                                <td> <?= $consulta->queixa; ?> </td>
                                 <td>
                                     <button type="button" 
-                                            onclick="location.href='<?= $router->route('app.detalhes', ['id' => $paciente->id]);?>'" 
+                                            onclick="location.href='<?= $router->route('app.detalhes', ['idPaciente' => $consulta->idPaciente, 'idProfissional' => $consulta->idProfissional]);?>'" 
                                             class="btn btn-light">Visualizar</button>
-                                    <button type="button" class="btn btn-light">Modificar</button>
+                                    <button type="button"
+                                            onclick="location.href='<?= $router->route('app.atendimento', ['idPaciente' => $consulta->idPaciente, 'idProfissional' => $consulta->idProfissional]);?>'" 
+                                            class="btn btn-light">Atender</button>
                                     <button type="button" class="btn btn-light">Deletar</button>
                                 </td>
                             </tr>
                         </tbody>
                 <?php
+                        endif;
                     endforeach;
                 endif;
                 ?>

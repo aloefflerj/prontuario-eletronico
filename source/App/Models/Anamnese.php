@@ -17,4 +17,19 @@ class Anamnese extends DataLayer
             "revisaoSistemas"
         ]);
     }
+
+    public function register($idPaciente, $qp, $hda, $antecedentesPessoais, $antecedentesFamiliares, $habitos, $revisaoSistemas): Anamnese
+    {
+        $this->idPaciente = $idPaciente;
+        $this->qp = $qp;
+        $this->hda = $hda;
+        $this->antecedentesPessoais = $antecedentesPessoais;
+        $this->antecedentesFamiliares = $antecedentesFamiliares;
+        $this->habitos = $habitos;
+        $this->revisaoSistemas = $revisaoSistemas;
+        
+        $this->save();
+
+        return $this;
+    }
 }

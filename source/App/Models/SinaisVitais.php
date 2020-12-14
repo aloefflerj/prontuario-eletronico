@@ -15,4 +15,18 @@ class SinaisVitais extends DataLayer
             "nivelDioxidoCarbono",
             "temperatura"]);
     }
+
+    public function register($idPaciente, $pressao, $batimentos, $saturacaoOxigenio, $nivelDioxidoCarbono, $temperatura): SinaisVitais
+    {
+        $this->idPaciente = $idPaciente;
+        $this->pressao = $pressao;
+        $this->batimentos =$batimentos;
+        $this->saturacaoOxigenio = $saturacaoOxigenio;
+        $this->nivelDioxidoCarbono = $nivelDioxidoCarbono;
+        $this->temperatura = $temperatura;
+
+        $this->save();
+
+        return $this;
+    }
 }

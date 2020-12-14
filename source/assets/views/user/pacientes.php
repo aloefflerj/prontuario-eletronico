@@ -8,9 +8,9 @@
 <label for="cpf">Pesquisa por Cpf: </label>
 <input type="search" name="cpf" id="cpf">
 
-<input type="button" value="Pesquisar" data-search="<?= $router->route("user.procura"); ?>">
+<input type="button" value="Pesquisar" data-search="<?= $router->route("user.procuraPaciente"); ?>">
 
-<div id="resultado">
+<div id="resultado" style="border: 1px solid #555;">
 
 </div>
 <?php $v->start("scripts"); ?>
