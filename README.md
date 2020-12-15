@@ -8,13 +8,13 @@ Prontuário eletrônico para a disciplina de Desenvolvimento de Software Para We
 - Para acessar o administrador vá para: "localhost/prontuario-eletronico/adm"
 
 - ADM
-  - E-mail: "and@email.com"
+  - E-mail: "adm@email.com"
   - Senha: "senha123"
   
 - Usuários do sistema
-  - E-mail: "sus@email.com"
+  - E-mail: "user@email.com"
   - Senha: "senha123"
   
 - Médicos (profissionais):
-  - Cpf: "123"
+  - Cpf: "1"
   - Senha: "senha123"
